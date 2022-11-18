@@ -1,25 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import logo from './Images/favicon.png';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div>
+            <header className="flex justify-between primary-background-colour h-20 drop-shadow">
+                <div className="nav-center-items w-[500px] pl-6">
+                    <a href="/"><img src={logo} className="w-16 h-16 border-4 border-purple-300 rounded-full shadow"/></a>
+                    <a href="/" className="purple-button w-48 h-12">Sprints</a>
+                    <a href="/" className="purple-button w-48 h-12">Burndown</a>
+                </div>
+                <div className="nav-center-items w-[300px] pr-6">
+                    <a href="/" className="purple-button w-44 h-12">Register</a>
+                    <img src="khjhgiu.png" className="center-items w-14 h-16 border-4 border-purple-300 rounded-xl shadow"/>
+                </div>
+            </header>
+        </div>
+    );
 }
 
 export default App;
