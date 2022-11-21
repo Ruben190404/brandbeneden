@@ -22,9 +22,9 @@ return new class extends Migration
             $table->integer('status');
             $table->dateTime('spend_time');
             $table->dateTime('estimated_time');
-            $table->integer('tag');
             $table->integer('task_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
