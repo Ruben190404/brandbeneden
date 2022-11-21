@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('sprints', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->longText('goal');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->integer('board_id');
