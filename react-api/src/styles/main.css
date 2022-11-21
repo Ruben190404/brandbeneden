@@ -1,0 +1,24 @@
+@import "header.css";
+
+/*Import all the stylesheets here in the main stylesheet*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1 {
+  font-size: 48pt;
+}
+
+h2 {
+  font-size: 26pt;
+}
+
+h3 {
+  font-size: 18pt;
+}
+
+h4 {
+  font-size: 12pt;
+}
+
