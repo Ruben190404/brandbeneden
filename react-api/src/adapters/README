@@ -1,0 +1,1 @@
+In deze map komt alles van Axios en alles wat te maken heeft met data geven/ontvangen van buitenstaanders. Dit is een van de belangrijkste onderdelen van de applicatie. De data wordt opgehaald uit de database en wordt in de applicatie getoond. De data wordt opgehaald met behulp van de Axios library.
