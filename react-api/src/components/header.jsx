@@ -1,4 +1,5 @@
 import logo from "../Images/favicon.png";
+import pfp from "../Images/testpfp.png";
 import '../styles/main.css';
 
 function Header() {
@@ -11,7 +12,7 @@ function Header() {
                     <a href="/" className="purple-button w-48 h-12">Burndown</a>
                 </div>
                 <div className="nav-center-items pr-6">
-                    <img src="khjhgiu.png" className="center-items w-14 h-16 border-4 border-purple-300 rounded-xl shadow"/>
+                    <img src={pfp} className="center-items w-14 h-16 border-4 border-purple-300 rounded-xl shadow"/>
                 </div>
             </header>
         </div>
