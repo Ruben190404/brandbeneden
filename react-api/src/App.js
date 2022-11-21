@@ -1,5 +1,6 @@
 import './styles/App.css';
 import logo from './Images/favicon.png';
+import pfp from './Images/testpfp.png';
 
 function App() {
     return (
@@ -10,9 +11,9 @@ function App() {
                     <a href="/" className="purple-button w-48 h-12">Sprints</a>
                     <a href="/" className="purple-button w-48 h-12">Burndown</a>
                 </div>
-                <div className="nav-center-items w-[300px] pr-6">
-                    <a href="/" className="purple-button w-44 h-12">Register</a>
-                    <img src="khjhgiu.png" className="center-items w-14 h-16 border-4 border-purple-300 rounded-xl shadow"/>
+                <div className="nav-center-items pr-6">
+                    {/*<a href="/" className="purple-button w-44 h-12">Register</a>*/}
+                    <img src={pfp} className="center-items w-14 h-16 border-4 border-purple-300 rounded-xl shadow"/>
                 </div>
             </header>
         </div>
