@@ -1,7 +1,6 @@
 .sprint-board {
     display: flex;
     flex-direction: column;
-    background-color: #5e70b7;
 }
 
 .card-nav {
