@@ -5,7 +5,7 @@ import '../styles/main.css';
 function Header() {
     return (
         <div>
-            <header className="flex justify-between primary-background-colour h-20 drop-shadow">
+            <header className="flex justify-between primary-background-colour h-20 drop-shadow z-50 absolute w-full">
                 <div className="nav-center-items w-[500px] pl-6">
                     <a href="/"><img src={logo} className="w-16 h-16 border-4 border-purple-300 rounded-full shadow"/></a>
                     <a href="/" className="purple-button w-48 h-12">Sprints</a>
