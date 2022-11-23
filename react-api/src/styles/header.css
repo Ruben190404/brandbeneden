@@ -7,23 +7,30 @@
 
 }
 
-.purple-button{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(216, 180, 254);
-    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    border-radius: 9999px;
+.purple-button {
+    @apply flex
+    items-center
+    justify-center
+    bg-purple-300
+    shadow
+    rounded-full
 }
 
-.center-items{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.center-items {
+    @apply flex
+    items-center
+    justify-center
 }
 
-.nav-center-items{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.nav-center-items {
+    @apply flex
+    items-center
+    justify-between
+}
+
+.title{
+    text-shadow: 0 0 5px black;
+    @apply text-xl
+    font-bold
+    text-purple-300
 }

@@ -1,15 +1,13 @@
 import Header from "../components/header";
-import React from 'react';
-import Task from "../components/task";
-
-
-
+import Form from "../components/Project/create";
+import Board from "../components/board";
 
 function Home() {
     return (
         <div>
             <Header />
-            <Task />
+            // <Form />
+            <Board />
         </div>
     )
 }

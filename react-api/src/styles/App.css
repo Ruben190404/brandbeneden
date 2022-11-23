@@ -27,24 +27,3 @@ h4 {
     background-color: #BE93D4;
 }
 
-.purple-button {
-    @apply flex
-    items-center
-    justify-center
-    bg-purple-300
-    shadow
-    rounded-full
-}
-
-.center-items {
-    @apply flex
-    items-center
-    justify-center
-}
-
-.nav-center-items {
-    @apply flex
-    items-center
-    justify-between
-
-}
