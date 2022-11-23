@@ -32,7 +32,6 @@ function Board() {
                             <span>Sprint name</span>
                             <span>sprint_start/end_date</span>
                         </li>
-                        <li>Filter:</li>
                         <li>Assignee</li>
                         <li>Status</li>
                         <li>Priority</li>
@@ -45,10 +44,30 @@ function Board() {
                         Add card
                     </div>
                 </div>
-                <div>
-                {/*  Cards  */}
-                    <div>
-
+                <div className={"cards"}>
+                    <div className="card">
+                        <div className="first-cell">
+                            <label htmlFor="title"></label>
+                            <input id={"title"} type="text"/>
+                        </div>
+                        <div className="table-cell">
+                            <p>Assignee</p>
+                        </div>
+                        <div className="table-cell">
+                            <p>Status</p>
+                        </div>
+                        <div className="table-cell">
+                            <p>Priority</p>
+                        </div>
+                        <div className="table-cell">
+                            <p>Worked time</p>
+                        </div>
+                        <div className="table-cell">
+                            <p>Est time</p>
+                        </div>
+                        <div className="table-cell last-cell">
+                            <p>Due date</p>
+                        </div>
                     </div>
                 </div>
             </div>
