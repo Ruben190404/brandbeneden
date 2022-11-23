@@ -1,5 +1,7 @@
 @import "header.css";
 @import "board.css";
+@import "Form.css";
+
 /*Import all the stylesheets here in the main stylesheet*/
 
 @tailwind base;
