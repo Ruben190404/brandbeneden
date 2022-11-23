@@ -26,5 +26,11 @@
     @apply flex
     items-center
     justify-between
+}
 
+.title{
+    text-shadow: 0 0 5px black;
+    @apply text-xl
+    font-bold
+    text-purple-300
 }

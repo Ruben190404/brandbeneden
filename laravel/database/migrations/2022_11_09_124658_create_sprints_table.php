@@ -19,7 +19,7 @@ return new class extends Migration
             $table->longText('goal');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-            $table->integer('board_id');
+            $table->integer('project_id');
             $table->timestamps();
         });
     }

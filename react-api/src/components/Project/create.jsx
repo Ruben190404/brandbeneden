@@ -11,15 +11,18 @@ function Form() {
                     <label htmlFor="start_date">Start Date</label>
                     <input type="date" id="start_date" className="bg-violet-300" name="start_date" placeholder="Start Date"/>
                 </div>
-                <div className="flex flex-col items-center rounded-lg border-2 border-black w-52 h-16 bg-white bg-violet-300">
+                <div className="flex flex-col items-center rounded-lg border-2 border-black w-52 h-16 bg-violet-300">
                     <label htmlFor="end_date">End Date</label>
                     <input type="date" id="end_date" className="bg-violet-300" name="end_date" placeholder="End Date"/>
                 </div>
-                <button className="text-center rounded-lg border-2 border-black w-32 bg-green-400" type="submit">Submit</button>
-
+                <button className="text-center rounded-lg border-2 border-black w-32 bg-green-400" type="button" onClick={submit}>Submit</button>
             </form>
         </div>
     );
+}
+
+function submit() {
+    console.log("Submitted");
 }
 
 export default Form
