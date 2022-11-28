@@ -1,3 +1,4 @@
+import Card from "./card";
 
 function Board() {
     return (
@@ -32,11 +33,10 @@ function Board() {
                             <span>Sprint name</span>
                             <span>sprint_start/end_date</span>
                         </li>
-                        <li>Filter:</li>
                         <li>Assignee</li>
                         <li>Status</li>
                         <li>Priority</li>
-                        <li>Estimated Time</li>
+                        <li>Est Time</li>
                         <li>Spent Time</li>
                         <li>Due Date</li>
                     </ul>
@@ -45,11 +45,13 @@ function Board() {
                         Add card
                     </div>
                 </div>
-                <div>
-                {/*  Cards  */}
-                    <div>
-
-                    </div>
+                <div className={"cards"}>
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
                 </div>
             </div>
         </div>
