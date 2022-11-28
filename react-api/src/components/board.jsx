@@ -1,3 +1,4 @@
+import Card from "./card";
 
 function Board() {
     return (
@@ -35,7 +36,7 @@ function Board() {
                         <li>Assignee</li>
                         <li>Status</li>
                         <li>Priority</li>
-                        <li>Estimated Time</li>
+                        <li>Est Time</li>
                         <li>Spent Time</li>
                         <li>Due Date</li>
                     </ul>
@@ -45,30 +46,12 @@ function Board() {
                     </div>
                 </div>
                 <div className={"cards"}>
-                    <div className="card">
-                        <div className="first-cell">
-                            <label htmlFor="title"></label>
-                            <input id={"title"} type="text"/>
-                        </div>
-                        <div className="table-cell">
-                            <p>Assignee</p>
-                        </div>
-                        <div className="table-cell">
-                            <p>Status</p>
-                        </div>
-                        <div className="table-cell">
-                            <p>Priority</p>
-                        </div>
-                        <div className="table-cell">
-                            <p>Worked time</p>
-                        </div>
-                        <div className="table-cell">
-                            <p>Est time</p>
-                        </div>
-                        <div className="table-cell last-cell">
-                            <p>Due date</p>
-                        </div>
-                    </div>
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
                 </div>
             </div>
         </div>

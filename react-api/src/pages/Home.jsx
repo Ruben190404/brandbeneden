@@ -8,7 +8,6 @@ function Home() {
         <div>
             <Header />
             <Board />
-            <Form />
         </div>
     )
 }
