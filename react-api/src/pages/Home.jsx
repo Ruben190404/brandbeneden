@@ -10,14 +10,14 @@ function Home() {
         <div>
             <Header />
             {/*<div className="flex flex-row">*/}
-                {/*<SprintShow why={"can't count"}/>*/}
-                {/*<SprintShow why={"sprint 69"}/>*/}
-                {/*<SprintShow why={"sprint 420"}/>*/}
+            {/*    <SprintShow why={"can't count"}/>*/}
+            {/*    <SprintShow why={"sprint 69"}/>*/}
+            {/*    <SprintShow why={"sprint 420"}/>*/}
             {/*</div>*/}
 
             {/*<SprintForm/>*/}
             {/*<SprintEditForm/>*/}
-            {/* <Form />*/}
+            {/*<Form />*/}
             <Board />
         </div>
     )
