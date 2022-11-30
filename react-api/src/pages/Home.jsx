@@ -18,7 +18,7 @@ function Home() {
             {/*<SprintForm/>*/}
             {/*<SprintEditForm/>*/}
             <Form />
-            {/*<Board />*/}
+            <Board />
         </div>
     )
 }

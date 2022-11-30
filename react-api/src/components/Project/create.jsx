@@ -21,7 +21,7 @@ function upload() {
 
 function Form() {
     return (
-        <div className="flex justify-center items-center h-screen">
+        <div className="flex justify-center items-center h-screen w-full fixed">
             <form className="form justify-around primary-background-colour">
                 <h2>Add Project</h2>
                 <input className="text-center rounded-lg border-2 border-black bg-violet-300 w-52" type="text" id="title" name="title" placeholder="Name"/>
