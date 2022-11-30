@@ -7,33 +7,33 @@ function Card() {
             <input type="checkbox"/>
         </div>
         <div className="first-cell">
-            <textarea name="title" id="title" value={"peepeepoopoo"} cols="30" rows="3"></textarea>
+            <textarea name="title" id="title" defaultValue={"peepeepoopoo"} cols="30" rows="3"></textarea>
         </div>
         <div className="table-cell">
             <select name="" id="">
-                <option value="">Sjors</option>
-                <option value="">Ruben</option>
+                <option defaultValue="">Sjors</option>
+                <option defaultValue="">Ruben</option>
             </select>
         </div>
         <div className="table-cell">
             <select name="" id="">
-                <option value="">To Do</option>
-                <option value="">Open</option>
-                <option value="">Done</option>
+                <option defaultValue="">To Do</option>
+                <option defaultValue="">Open</option>
+                <option defaultValue="">Done</option>
             </select>
         </div>
         <div className="table-cell">
             <select name="" id="">
-                <option value="">Low</option>
-                <option value="">Medium</option>
-                <option value="">High</option>
+                <option defaultValue="">Low</option>
+                <option defaultValue="">Medium</option>
+                <option defaultValue="">High</option>
             </select>        
         </div>
         <div className="table-cell">
-            <input type="text" value={"2d"}/>
+            <input type="text" defaultValue={"2d"}/>
         </div>
         <div className="table-cell">
-            <input type="text" value={"1w"}/>
+            <input type="text" defaultValue={"1w"}/>
         </div>
         <div className="table-cell last-cell">
             <p>Due date</p>
