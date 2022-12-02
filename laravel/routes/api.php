@@ -19,5 +19,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/project/store', [ProjectController::class, 'store']);
+Route::get('/projects', [ProjectController::class, 'index']);
 
+Route::get('/projects/{id}', [ProjectController::class, 'show']);
+
+Route::post('/projects/store', [ProjectController::class, 'store']);
+
+Route::put('/projects/update/1', [ProjectController::class, 'update']);
