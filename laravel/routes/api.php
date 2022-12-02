@@ -15,11 +15,15 @@ use App\Http\Controllers\Project\ProjectController;
 |
 */
 
-Route::get('/tasks', [\App\Http\Controllers\TaskController::class, 'index']);
-Route::post('/add-task', [\App\Http\Controllers\TaskController::class, 'store']);
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//Tasks Routes
+Route::get('/tasks', [\App\Http\Controllers\TaskController::class, 'index']);
+Route::post('/add-task', [\App\Http\Controllers\TaskController::class, 'store']);
 
+//Sprint Routes
+Route::post('/add-sprint', [\App\Http\Controllers\SprintController::class, 'store']);
