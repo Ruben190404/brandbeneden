@@ -7,7 +7,7 @@ function Card() {
             <input type="checkbox"/>
         </div>
         <div className="first-cell">
-            <textarea name="title" id="title" defaultValue={"peepeepoopoo"} cols="30" rows="3"></textarea>
+            <textarea name="title" id="title" defaultValue={"hrbtbtgb"} cols="30" rows="3"></textarea>
         </div>
         <div className="table-cell">
             <select name="" id="">

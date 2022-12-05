@@ -1,7 +1,6 @@
 import logo from "../Images/logo.png";
 import pfp from "../Images/testpfp.png";
 import '../styles/main.css';
-import { useState} from "react";
 
 function Header() {
     return (

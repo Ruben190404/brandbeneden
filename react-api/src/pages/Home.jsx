@@ -2,9 +2,10 @@ import Header from "../components/header";
 import SprintForm from "../components/Sprint/create";
 import SprintShow from "../components/Sprint/show";
 import SprintEditForm from "../components/Sprint/edit";
-import ProjectForm from "../components/Project/create";
 import Board from "../components/board";
+import ProjectForm from "../components/Project/create";
 import ProjectEditForm from "../components/Project/edit";
+import Projects from "../components/Project/show";
 
 function Home() {
     return (
@@ -19,8 +20,9 @@ function Home() {
             {/*<SprintForm/>*/}
             {/*<SprintEditForm/>*/}
             {/*<ProjectForm />*/}
-            <ProjectEditForm />
+            {/*<ProjectEditForm />*/}
             <Board />
+            <Projects />
         </div>
     )
 }

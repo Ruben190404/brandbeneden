@@ -55,6 +55,7 @@ class ProjectController extends Controller
 
     public function update(Project $project, Request $request) // updates a project in the database
     {
+
         $project->title = $request->input('title');
         $project->start_date = $request->input('start_date');
         $project->end_date = $request->input('end_date');
@@ -62,8 +63,12 @@ class ProjectController extends Controller
         $project->save();
     }
 
-    public function softDelete(Project $project)
+
+
+    public function delete(Project $project, Request $request)
     {
-        $project->deleted_at = now();
+        $project->deleted_at = $request->input('soft_delete');
+
+        $project->save();
     }
 }

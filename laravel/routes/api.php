@@ -25,4 +25,6 @@ Route::get('/projects/{id}', [ProjectController::class, 'show']);
 
 Route::post('/projects/store', [ProjectController::class, 'store']);
 
-Route::put('/projects/update/1', [ProjectController::class, 'update']);
+Route::put('/projects/update/{project}', [ProjectController::class, 'update']);
+
+Route::put('/projects/delete/{project}', [ProjectController::class, 'delete']);
