@@ -6,7 +6,7 @@ function Header() {
     return (
         <div>
             <header className="flex justify-between primary-background-colour h-20 drop-shadow w-full">
-                <div className="nav-center-items w-[700px] pl-6">
+                <div className="nav-center-items w-[850px] pl-6">
                     <a href="/"><img src={logo} className="w-16 h-16 border-4 border-purple-300 rounded-full shadow"/></a>
                     <p className="title">Brandbeneden</p>
                     <div className="dropdown purple-button">
