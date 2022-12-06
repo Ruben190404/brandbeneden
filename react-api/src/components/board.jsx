@@ -1,4 +1,6 @@
 import Card from "./card";
+import ProjectEditForm from "./Project/edit";
+import ProjectAddForm from "./Project/create";
 
 function Board() {
     return (
@@ -54,6 +56,8 @@ function Board() {
                     <Card />
                 </div>
             </div>
+            <div id="project-edit-form" style={{display: "none"}}><ProjectEditForm/></div>
+            <div id="project-add-form" style={{display: "none"}}><ProjectAddForm/></div>
         </div>
     )
 }
