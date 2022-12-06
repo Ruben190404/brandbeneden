@@ -19,7 +19,7 @@ function Create() {
     })
 }
 
-function ProjectForm() {
+function ProjectAddForm() {
     return (
         <div className="flex justify-center items-center h-screen w-full fixed">
             <form className="form justify-around primary-background-colour">
@@ -44,4 +44,4 @@ function ProjectForm() {
     );
 }
 
-export default ProjectForm
+export default ProjectAddForm

@@ -2,10 +2,13 @@ import React from 'react';
 import axios from 'axios';
 import ProjectEditForm from "./edit";
 
-function RenderEditForm() {
-    document.getElementById('edit-form').style.display = "block";
-}
+
 export default class Projects extends React.Component {
+
+    RenderEditForm() {
+        document.getElementById('edit-form').style.display = "block";
+    }
+
     constructor(props) {
         super(props);
 
@@ -31,7 +34,7 @@ export default class Projects extends React.Component {
                         ? this.state.projects.projects.map(project =>
                             <div>
                                 <li key={project.id}>{project.title}</li>
-                                <button onClick={RenderEditForm}>Edit</button>
+                                <button onClick={this.RenderEditForm}>Edit</button>
                                 <div id="edit-form" style={{display: "none"}}><ProjectEditForm/></div>
                             </div>
                         ) : ""
