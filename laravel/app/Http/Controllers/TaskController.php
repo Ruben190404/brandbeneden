@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $tasks = Task::orderby('id', 'desc')->get();
 
         return response()->json([
@@ -32,6 +33,24 @@ class TaskController extends Controller
         return response()->json([
             'status' => true,
             'message'=>'New task weyghj,zdhvgzfjdkjmndguhj',
+        ]);
+    }
+
+    public function update(Request $request, Task $task)
+    {
+        $task->title = $request->input('title');
+        $task->description = $request->input('description');
+        $task->user_id = $request->input('user_id');
+        $task->priority = $request->input('priority');
+        $task->status = $request->input('status');
+        $task->spend_time = $request->input('spend_time');
+        $task->estimated_time = $request->input('estimated_time');
+        $task->task_id = $request->input('task_id');
+        $task->save();
+
+        return response()->json([
+            'status'=> true,
+            'message'=>'updateedde',
         ]);
     }
 }
