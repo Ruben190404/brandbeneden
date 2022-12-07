@@ -97,10 +97,10 @@ class Board extends React.Component {
                                 </select>
                             </div>
                             <div className="table-cell">
-                                <input type="number" data-id={card.id} defaultValue={card.estimated_time} onChange={this.handleInput} value={this.state.estimated_time}/>
+                                <input name="estimated_time" type="number" data-id={card.id} defaultValue={card.estimated_time} onChange={this.handleInput} value={this.state.estimated_time}/>
                             </div>
                             <div className="table-cell">
-                                <input type="number" data-id={card.id} defaultValue={card.spend_time} onChange={this.handleInput} value={this.state.spend_time}/>
+                                <input type="spend_time" data-id={card.id} defaultValue={card.spend_time} onChange={this.handleInput} value={this.state.spend_time}/>
                             </div>
                             <div className="table-cell last-cell">
                                 <p>Due date</p>
