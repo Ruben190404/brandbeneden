@@ -17,18 +17,10 @@ class Board extends React.Component {
     handleInput = (e) => {
 
         let id = parseInt(e.target.getAttribute('data-id'));
-        console.log(id);
 
         var result = this.state.tasks.find(item => item.id === id);
 
-
         result[e.target.name] = e.target.value;
-
-        //        result.title = e.target.value;
-
-        console.log(result);  // Prints: Peter
-
-        console.log(e.target.getAttribute('data-id'))
     }
 
     componentDidMount() {
@@ -54,7 +46,7 @@ class Board extends React.Component {
         const don = this.state.tasks.find(obj => {
             return obj.id === task_id;
         });
-        console.log(don)
+
         const response = await axios.put(`http://127.0.0.1:8000/api/update-task/${task_id}`, don);
     }
 
