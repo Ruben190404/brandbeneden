@@ -4,6 +4,8 @@ import SprintShow from "../components/Sprint/show";
 import SprintEditForm from "../components/Sprint/edit";
 import Board from "../components/board";
 import ProjectAddForm from "../components/Project/create";
+import SprintBurndown from "../components/SprintBurndown";
+
 
 function Home() {
     return (
@@ -14,6 +16,7 @@ function Home() {
             {/*    <SprintShow why={"sprint 69"}/>*/}
             {/*    <SprintShow why={"sprint 420"}/>*/}
             {/*</div>*/}
+            <SprintBurndown/>
 
             {/*<SprintForm/>*/}
             {/*<SprintEditForm/>*/}
