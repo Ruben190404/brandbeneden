@@ -20,8 +20,8 @@ return new class extends Migration
             $table->integer('user_id');
             $table->integer('priority');
             $table->integer('status');
-            $table->dateTime('spend_time');
-            $table->dateTime('estimated_time');
+            $table->integer('spend_time');
+            $table->integer('estimated_time');
             $table->integer('task_id');
             $table->timestamps();
             $table->softDeletes();
