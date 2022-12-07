@@ -19,8 +19,10 @@ return new class extends Migration
             $table->longText('goal');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-            $table->integer('project_id');
+            $table->unsignedBigInteger('project_id');
             $table->timestamps();
+
+            $table->foreign('project_id')->references('id')->on('projects');
         });
     }
 

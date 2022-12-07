@@ -26,6 +26,7 @@ Route::get('/projects', [ProjectController::class, 'index']);
 Route::get('/projects/{id}', [ProjectController::class, 'show']);
 //Tasks Routes
 Route::get('/tasks', [\App\Http\Controllers\TaskController::class, 'index']);
+Route::get('/tasks/{sprintId}', [\App\Http\Controllers\TaskController::class, 'getTasksBySprint']);
 Route::post('/add-task', [\App\Http\Controllers\TaskController::class, 'store']);
 Route::put('/update-task/{task}', [\App\Http\Controllers\TaskController::class, 'update']);
 
