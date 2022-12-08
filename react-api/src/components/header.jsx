@@ -57,7 +57,7 @@ export default class Header extends React.Component {
                                 <button onClick={this.renderProjectAddForm}>Add</button>
                             </div>
                         </div>
-                        <a href="/" className="purple-button">Burn-down</a>
+                        <a href="/Burndown" className="purple-button">Burn-down</a>
                     </div>
                     <div className="nav-center-items pr-6">
                         <img src={pfp} className="center-items w-14 h-16 border-4 border-purple-300 rounded-xl shadow"/>

@@ -69,18 +69,22 @@ function SprintBurndown(props) {
                 // Add estimated time to start for our ideal burndown
                 start += task.estimated_time;
 
-                // Get task updated at in JavaScript format
-                const completedAt = new Date(task.updated_at).toLocaleDateString();
+                if (task.status === 1) {
 
-                // Get index of array where the task date matches
-                // So if start is 1 dec and end is 7 dec, if our task is done on 4 dec then it will return index 3
-                const index = dateLabels.indexOf(completedAt);
+                    // Get task updated at in JavaScript format
+                    const completedAt = new Date(task.updated_at).toLocaleDateString();
 
-                // Add estimated time to completed array
-                // All tasks done on a specific date are added to that index in the array
-                completedPerDay[index] += task.estimated_time;
+                    // Get index of array where the task date matches
+                    // So if start is 1 dec and end is 7 dec, if our task is done on 4 dec then it will return index 3
+                    const index = dateLabels.indexOf(completedAt);
+
+                    // Add estimated time to completed array
+                    // All tasks done on a specific date are added to that index in the array
+                    completedPerDay[index] += task.estimated_time;
+
+                }
             });
-            //alleen doen als status af is. regel 72 tot 81
+
 
 
             console.log(start);
@@ -100,6 +104,7 @@ function SprintBurndown(props) {
             // each day
             // so day one 100 - 10 becomes 90, then on day two maybe 20 point have been completed so day 2 ends at 70
             let actual = completedPerDay.map((task) => start = start - task);
+
 
             setData({
                 labels: dateLabels,
