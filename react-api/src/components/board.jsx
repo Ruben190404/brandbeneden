@@ -3,6 +3,7 @@ import AddCardButton from "./AddCardButton";
 import React from "react";
 import axios from "axios";
 
+
 class Board extends React.Component {
 
     constructor(props) {
@@ -12,15 +13,24 @@ class Board extends React.Component {
             tasks: [],
             loading: true
         }
+
+        this.timeout = [];
     }
 
-    handleInput = (e) => {
+    handleInput = async(e) => {
+
 
         let id = parseInt(e.target.getAttribute('data-id'));
 
         var result = this.state.tasks.find(item => item.id === id);
 
         result[e.target.name] = e.target.value;
+
+        // timer stuff
+        clearTimeout(this.timeout[id]);
+        this.timeout[id] = setTimeout(() => axios.put(`http://127.0.0.1:8000/api/update-task/${result.id}`, result),1000)
+
+
     }
 
     componentDidMount() {
@@ -40,15 +50,15 @@ class Board extends React.Component {
         }
     }
 
-    updateTask = async (id) => {
-        const task_id = id;
-
-        const don = this.state.tasks.find(obj => {
-            return obj.id === task_id;
-        });
-
-        const response = await axios.put(`http://127.0.0.1:8000/api/update-task/${task_id}`, don);
-    }
+    // updateTask = async (id) => {
+    //     const task_id = id;
+    //
+    //     const don = this.state.tasks.find(obj => {
+    //         return obj.id === task_id;
+    //     });
+    //
+    //     const response = await axios.put(`http://127.0.0.1:8000/api/update-task/${task_id}`, don);
+    // }
 
     render() {
 
@@ -61,7 +71,7 @@ class Board extends React.Component {
             taskDisplay =
                 this.state.tasks.map((card) => {
                     return (
-                        <div key={card.id} className="card" onChange={() => this.updateTask(card.id)}>
+                        <div key={card.id} className="card" /*onChange={() => this.updateTask(card.id)}*/>
                             <div>
                                 <input type="checkbox"/>
                             </div>
