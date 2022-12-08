@@ -2,7 +2,6 @@
 @import "header.css";
 @import "board.css";
 @import "Form.css";
-@import "App.css";
 @import "card.css";
 
 /*Import all the stylesheets here in the main stylesheet*/
@@ -12,18 +11,25 @@
 @tailwind utilities;
 
 h1 {
-  font-size: 48pt;
+    font-size: 48pt;
 }
 
 h2 {
-  font-size: 26pt;
+    font-size: 26pt;
 }
 
 h3 {
-  font-size: 18pt;
+    font-size: 18pt;
 }
 
 h4 {
-  font-size: 12pt;
+    font-size: 12pt;
 }
 
+.primary-text-colour {
+    color: #BE93D4;
+}
+
+.primary-background-colour {
+    background-color: #BE93D4;
+}
