@@ -2,6 +2,8 @@ import Card from "./card";
 import AddCardButton from "./AddCardButton";
 import React from "react";
 import axios from "axios";
+import ProjectEditForm from "./Project/edit";
+import ProjectAddForm from "./Project/create";
 
 
 class Board extends React.Component {
@@ -174,8 +176,11 @@ class Board extends React.Component {
                     </div>
                 </div>
             </div>
-        )
-    }
+          // misschien nog ) }
+            <div id="project-edit-form" style={{display: "none"}}><ProjectEditForm/></div>
+            <div id="project-add-form" style={{display: "none"}}><ProjectAddForm/></div>
+        </div>
+    )
 }
 
 export default Board
