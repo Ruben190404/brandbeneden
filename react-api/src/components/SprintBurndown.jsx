@@ -31,7 +31,7 @@ function SprintBurndown(props) {
         plugins: {
             title: {
                 display: true,
-                text: 'Chart.js Line Chart',
+                text: 'Burndown chart',
             },
         },
     };

@@ -16,7 +16,6 @@ function Home() {
             {/*    <SprintShow why={"sprint 69"}/>*/}
             {/*    <SprintShow why={"sprint 420"}/>*/}
             {/*</div>*/}
-            <SprintBurndown/>
 
             {/*<SprintForm/>*/}
             {/*<SprintEditForm/>*/}
