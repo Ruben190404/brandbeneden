@@ -30,7 +30,6 @@ class Board extends React.Component {
     }
 
 
-
     async get() {
         const response = await axios.get('http://127.0.0.1:8000/api/tasks');
 
@@ -68,33 +67,41 @@ class Board extends React.Component {
                                 <input type="checkbox"/>
                             </div>
                             <div className="first-cell">
-                                <textarea name="title" id="title" data-id={card.id} defaultValue={card.title} onChange={this.handleInput} value={this.state.title} cols="30" rows="3"></textarea>
+                                <textarea name="title" id="title" data-id={card.id} defaultValue={card.title}
+                                          onChange={this.handleInput} value={this.state.title} cols="30"
+                                          rows="3"></textarea>
                             </div>
                             <div className="table-cell">
-                                <select name="user_id" id="" data-id={card.id} defaultValue={card.user_id} onChange={this.handleInput} value={this.state.user_id} >
+                                <select name="user_id" id="" data-id={card.id} defaultValue={card.user_id}
+                                        onChange={this.handleInput} value={this.state.user_id}>
                                     <option value="1">Sjors</option>
                                     <option value="2">Ruben</option>
                                 </select>
                             </div>
                             <div className="table-cell">
-                                <select name="status" id="" data-id={card.id} defaultValue={card.status} onChange={this.handleInput} value={this.state.status} >
+                                <select name="status" id="" data-id={card.id} defaultValue={card.status}
+                                        onChange={this.handleInput} value={this.state.status}>
                                     <option value="1">To Do</option>
                                     <option value="2">Open</option>
                                     <option value="3">Done</option>
                                 </select>
                             </div>
                             <div className="table-cell">
-                                <select name="priority" id="" data-id={card.id} defaultValue={card.priority} onChange={this.handleInput} value={this.state.priority} >
+                                <select name="priority" id="" data-id={card.id} defaultValue={card.priority}
+                                        onChange={this.handleInput} value={this.state.priority}>
                                     <option value="1">Low</option>
                                     <option value="2">Medium</option>
                                     <option value="3">High</option>
                                 </select>
                             </div>
                             <div className="table-cell">
-                                <input name="estimated_time" type="number" data-id={card.id} defaultValue={card.estimated_time} onChange={this.handleInput} value={this.state.estimated_time}/>
+                                <input name="estimated_time" type="number" data-id={card.id}
+                                       defaultValue={card.estimated_time} onChange={this.handleInput}
+                                       value={this.state.estimated_time}/>
                             </div>
                             <div className="table-cell">
-                                <input name="spend_time" type="number" data-id={card.id} defaultValue={card.spend_time} onChange={this.handleInput} value={this.state.spend_time}/>
+                                <input name="spend_time" type="number" data-id={card.id} defaultValue={card.spend_time}
+                                       onChange={this.handleInput} value={this.state.spend_time}/>
                             </div>
                             <div className="table-cell last-cell">
                                 <p>Due date</p>
@@ -165,12 +172,11 @@ class Board extends React.Component {
                         {/*<Card/>*/}
                     </div>
                 </div>
+                <div id="project-edit-form" style={{display: "none"}}><ProjectEditForm/></div>
+                <div id="project-add-form" style={{display: "none"}}><ProjectAddForm/></div>
             </div>
-          // misschien nog ) }
-            <div id="project-edit-form" style={{display: "none"}}><ProjectEditForm/></div>
-            <div id="project-add-form" style={{display: "none"}}><ProjectAddForm/></div>
-        </div>
-    )
+        )
+    }
 }
 
 export default Board

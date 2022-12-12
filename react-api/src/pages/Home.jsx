@@ -5,6 +5,7 @@ import SprintEditForm from "../components/Sprint/edit";
 import Board from "../components/board";
 import ProjectAddForm from "../components/Project/create";
 
+
 function Home() {
     return (
         <div>
@@ -21,6 +22,7 @@ function Home() {
             {/*<ProjectAddForm />*/}
             {/*<ProjectEditForm />*/}
             <Board />
+            {/*<audio src={pop} controls />*/}
         </div>
     )
 }
