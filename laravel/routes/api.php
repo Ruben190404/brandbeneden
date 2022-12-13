@@ -29,6 +29,9 @@ Route::put('/update-task/{task}', [\App\Http\Controllers\TaskController::class, 
 
 //Sprint Routes
 Route::post('/add-sprint', [\App\Http\Controllers\SprintController::class, 'store']);
+Route::get('/edit-sprint/{sprint}', [\App\Http\Controllers\SprintController::class, 'edit']);
+Route::put('/update-sprint/{sprint}', [\App\Http\Controllers\SprintController::class, 'update']);
+Route::put('/delete-sprint/{sprint}', [\App\Http\Controllers\SprintController::class, 'delete']);
 
 //Project Routes
 Route::get('/projects', [ProjectController::class, 'index']);

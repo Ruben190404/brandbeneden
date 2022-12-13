@@ -4,6 +4,7 @@ import SprintShow from "../components/Sprint/show";
 import SprintEditForm from "../components/Sprint/edit";
 import Board from "../components/board";
 import ProjectAddForm from "../components/Project/create";
+import ProjectEditForm from "../components/Project/edit";
 
 function Home() {
     return (

@@ -32,7 +32,6 @@ class TaskController extends Controller
 
         return response()->json([
             'status' => true,
-            'message'=>'New task weyghj,zdhvgzfjdkjmndguhj',
         ]);
     }
 
@@ -50,7 +49,6 @@ class TaskController extends Controller
 
         return response()->json([
             'status'=> true,
-            'message'=>'updateedde',
         ]);
     }
 }
