@@ -21,8 +21,6 @@ class TaskAdd extends Component{
 
         if (response.data.status === true) {
 
-            console.log(response.data.message);
-
             window.location.reload();
         }
 
