@@ -1,6 +1,6 @@
 import Home from "./pages/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import pop from "./sounds/pop.mp3";
+// import pop from "./sounds/pop.mp3";
 
 // document.addEventListener('keydown', function(event) {
 //     // Create an audio element with the specified sound file
