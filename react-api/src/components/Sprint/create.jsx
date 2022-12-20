@@ -39,13 +39,14 @@ class SprintForm extends Component {
             })
 
         }
+    }
 
+    cancel(){
+        document.getElementById("sprint-add-form").style.display = "none";
     }
 
     render() {
-
         return (
-            <div className="flex justify-center items-center h-screen">
                 <form onSubmit={this.saveSprint} className="form justify-around primary-background-colour w-fit">
                     <div className="w-full flex justify-evenly items-center flex-row">
                         <div className="w-6 h-6"></div>
@@ -76,14 +77,13 @@ class SprintForm extends Component {
                     </select>
                     <div>
                         <button className="text-center rounded-lg border-2 border-black w-32 bg-red-400"
-                                type="submit">cancel
+                                type="submit" onClick={this.cancel}>cancel
                         </button>
                         <button className="text-center rounded-lg border-2 border-black w-32 bg-green-400"
                                 type="submit">Submit
                         </button>
                     </div>
                 </form>
-            </div>
         );
     }
 }

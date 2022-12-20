@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('status');
             $table->integer('spend_time');
             $table->integer('estimated_time');
+            $table->integer("sprint_id");
             $table->integer('task_id');
             $table->timestamps();
             $table->softDeletes();

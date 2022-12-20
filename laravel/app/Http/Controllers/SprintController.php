@@ -7,9 +7,17 @@ use Illuminate\Http\Request;
 
 class SprintController extends Controller
 {
-    public function index() {}
+    public function index()
+    {
+        $sprints = Sprint::all();
+        return response()->json([
+            'status' => 'success',
+            'sprints' => $sprints
+        ]);
+    }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
 
 //        $validated = $request->validate([
 //            'title' => 'required|min:1',
@@ -30,6 +38,21 @@ class SprintController extends Controller
         return response()->json([
             'status' => true,
             'message' => 'New Sprint',
+        ]);
+    }
+
+    public function currentsprint()
+    {
+        $sprints = Sprint::all();
+        $currentsprint = 0;
+        foreach ($sprints as $sprint) {
+            if ($sprint->start_date < now() && $sprint->end_date > now()) {
+                $currentsprint = $sprint->id;
+            }
+        }
+        return response()->json([
+            'status' => true,
+            'currentsprint' => $currentsprint
         ]);
     }
 }
