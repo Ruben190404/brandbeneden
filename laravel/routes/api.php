@@ -26,6 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/tasks', [\App\Http\Controllers\TaskController::class, 'index']);
 Route::post('/add-task', [\App\Http\Controllers\TaskController::class, 'store']);
 Route::put('/update-task/{task}', [\App\Http\Controllers\TaskController::class, 'update']);
+Route::put('/delete-task/{task}', [\App\Http\Controllers\TaskController::class, 'delete']);
 
 //Sprint Routes
 Route::post('/add-sprint', [\App\Http\Controllers\SprintController::class, 'store']);

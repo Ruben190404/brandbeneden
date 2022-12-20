@@ -51,4 +51,11 @@ class TaskController extends Controller
             'status'=> true,
         ]);
     }
+
+    public function delete(Task $task, Request $request)
+    {
+        $task->deleted_at = $request->input('soft_delete');
+
+        $task->save();
+    }
 }

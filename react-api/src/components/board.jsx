@@ -36,6 +36,19 @@ class Board extends React.Component {
 
     }
 
+    SoftDelete(id) {
+        var result = this.state.tasks.find(item => item.id === id);
+
+        if (window.confirm("You Sure") == true) {
+            axios.put(`http://127.0.0.1:8000/api/delete-task/${result.id}`,{soft_delete: new Date().toISOString().slice(0, 19).replace('T', ' ').replace('Z', '')});
+            document.getElementById(id).remove();
+            alert("It is Deleted");
+        } else {
+            alert("Not Deleted");
+        }
+
+    }
+
     allowDrop(e) {
         e.preventDefault();
     }
@@ -139,6 +152,7 @@ class Board extends React.Component {
                                     <div className="table-cell last-cell">
                                         <p>Due date</p>
                                     </div>
+                                    <button onClick={() => this.SoftDelete(card.id)} className={"bg-red-600 text-white"}>Delete</button>
                                 </div>
                                 <div id={card.id} className={"w-full bg-amber-600 h-fit"} onDrop={this.drop}
                                      onDragOver={this.allowDrop}>add
@@ -193,6 +207,7 @@ class Board extends React.Component {
                                                             <div className="table-cell last-cell">
                                                                 <p>Due date</p>
                                                             </div>
+                                                            <button onClick={() => this.SoftDelete(task.id)} className={"bg-red-600 text-white"}>Delete</button>
                                                         </div>
                                                     </div>
                                                 )
