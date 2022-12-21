@@ -1,5 +1,6 @@
 import Home from "./pages/Home";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import ShowSprints from "./components/Sprint/show";
 // import pop from "./sounds/pop.mp3";
 
 // document.addEventListener('keydown', function(event) {
@@ -27,9 +28,10 @@ function App() {
                 <Route
                     index
                     element={
-                        <Home />
+                        <Home/>
                     }
                 />
+                <Route path=":id" element={<Home/>}/>
             </Routes>
         </BrowserRouter>
     );

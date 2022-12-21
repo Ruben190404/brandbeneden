@@ -1,6 +1,6 @@
 import Card from "./card";
 import AddCardButton from "./AddCardButton";
-import React from "react";
+import {React, useState} from "react";
 import axios from "axios";
 import ProjectEditForm from "./Project/edit";
 import ProjectAddForm from "./Project/create";
@@ -13,6 +13,30 @@ function renderSprintForm() {
 }
 
 function Board() {
+    const [start, setStart] = useState();
+    const [end, setEnd] = useState();
+
+    let { id } = useParams();
+
+    if(window.location.href === "http://localhost:3000/") {
+        axios.get(`http://localhost:8000/api/currentsprint`).then(res => {
+            const currentSprint = res.data.currentsprint;
+            axios.get(`http://localhost:8000/api/sprintData/${currentSprint}`).then(res => {
+                let start_date_data = new Date(res.data.sprint.start_date).toISOString().slice(0, 10);
+                let end_date_data = new Date(res.data.sprint.end_date).toISOString().slice(0, 10);
+                setStart(start_date_data);
+                setEnd(end_date_data);
+            })
+        })
+    } else {
+        axios.get(`http://localhost:8000/api/sprintData/${id}`).then(res => {
+            let start_date_data = new Date(res.data.sprint.start_date).toISOString().slice(0, 10);
+            let end_date_data = new Date(res.data.sprint.end_date).toISOString().slice(0, 10);
+            setStart(start_date_data);
+            setEnd(end_date_data);
+        })
+    }
+
     return (
         <div className={"board"}>
             <div className={"sprint-nav"}>
@@ -25,7 +49,6 @@ function Board() {
                                 d="M 25 2 C 12.309295 2 2 12.309295 2 25 C 2 37.690705 12.309295 48 25 48 C 37.690705 48 48 37.690705 48 25 C 48 12.309295 37.690705 2 25 2 z M 25 4 C 36.609824 4 46 13.390176 46 25 C 46 36.609824 36.609824 46 25 46 C 13.390176 46 4 36.609824 4 25 C 4 13.390176 13.390176 4 25 4 z M 24 13 L 24 24 L 13 24 L 13 26 L 24 26 L 24 37 L 26 37 L 26 26 L 37 26 L 37 24 L 26 24 L 26 13 L 24 13 z"/>
                         </svg>
                         <button onClick={renderSprintForm}>Add new sprint</button>
-
                     </div>
                     <div className={"sprint-nav-item"}>
                         <img src="https://img.icons8.com/ios/50/null/engineering.png" alt={"Gear icon"}
@@ -43,7 +66,7 @@ function Board() {
                     <ul>
                         <li className={"sprint-name"}>
                             <span>Sprint name</span>
-                            <span>sprint_start/end_date</span>
+                            <span>{start}/{end}</span>
                         </li>
                         <li>Assignee</li>
                         <li>Status</li>
@@ -55,7 +78,7 @@ function Board() {
                     <AddCardButton/>
                 </div>
                 <div className={"cards"}>
-                    <Card/>
+                    <Card path={id}/>
                 </div>
             </div>
             <div id="project-edit-form" style={{display: "none"}}><ProjectEditForm/></div>

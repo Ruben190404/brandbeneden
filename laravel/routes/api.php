@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Project\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,14 +30,14 @@ Route::put('/update-task/{task}', [\App\Http\Controllers\TaskController::class, 
 Route::get('/sprints', [\App\Http\Controllers\SprintController::class, 'index']);
 Route::post('/add-sprint', [\App\Http\Controllers\SprintController::class, 'store']);
 Route::get('/currentsprint', [\App\Http\Controllers\SprintController::class, 'currentSprint']);
+Route::get('/sprintData/{id}', [\App\Http\Controllers\SprintController::class, 'sprintData']);
 
 //Project Routes
-Route::get('/projects', [ProjectController::class, 'index']);
+Route::get('/projects', [\App\Http\Controllers\ProjectController::class, 'index']);
+Route::get('/projects/{id}', [\App\Http\Controllers\ProjectController::class, 'show']);
+Route::post('/projects/store', [\App\Http\Controllers\ProjectController::class, 'store']);
+Route::put('/projects/update/{project}', [\App\Http\Controllers\ProjectController::class, 'update']);
+Route::put('/projects/delete/{project}', [\App\Http\Controllers\ProjectController::class, 'delete']);
 
-Route::get('/projects/{id}', [ProjectController::class, 'show']);
-
-Route::post('/projects/store', [ProjectController::class, 'store']);
-
-Route::put('/projects/update/{project}', [ProjectController::class, 'update']);
-
-Route::put('/projects/delete/{project}', [ProjectController::class, 'delete']);
+//User Routes
+Route::get('/users', [\App\Http\Controllers\UserController::class, 'index']);

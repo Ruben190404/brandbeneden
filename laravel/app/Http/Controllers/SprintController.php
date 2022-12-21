@@ -55,4 +55,13 @@ class SprintController extends Controller
             'currentsprint' => $currentsprint
         ]);
     }
+
+    public function sprintData($id)
+    {
+        $sprint = Sprint::find($id);
+        return response()->json([
+            'status' => true,
+            'sprint' => $sprint
+        ]);
+    }
 }

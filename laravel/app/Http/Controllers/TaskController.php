@@ -8,10 +8,11 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
+//->orderby('id', 'desc')
 
     public function index($id)
     {
-        $tasks = Task::orderby('id', 'desc')->get()->where('sprint_id', $id);
+        $tasks = Task::where('sprint_id', $id)->orderby('id', 'desc')->get();
         return response()->json([
             'status' => true,
             'tasks' => $tasks

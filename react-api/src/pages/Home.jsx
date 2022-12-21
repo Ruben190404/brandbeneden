@@ -1,15 +1,13 @@
 import Header from "../components/header";
-import SprintForm from "../components/Sprint/create";
-import SprintEditForm from "../components/Sprint/edit";
 import Board from "../components/board";
-import ProjectAddForm from "../components/Project/create";
-
+import {useParams} from "react-router-dom";
 
 function Home() {
+    let { id } = useParams();
     return (
         <div>
             <Header />
-            <Board />
+            <Board path={id}/>
         </div>
     )
 }

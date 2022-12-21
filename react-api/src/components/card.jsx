@@ -30,7 +30,7 @@ export default class Card extends React.Component {
         if (window.location.href === "http://localhost:3000/") {
             const currentSprint = await axios.get(`http://localhost:8000/api/currentsprint`);
             const currentSprintId = currentSprint.data.currentsprint;
-            const response = await axios.get(`http://127.0.0.1:8000/api/sprint/${currentSprintId}`);
+            const response = await axios.get(`http://localhost:8000/api/sprint/${currentSprintId}`);
 
             if (response.data.status === true) {
                 this.setState({
@@ -38,29 +38,17 @@ export default class Card extends React.Component {
                     loading: false,
                 })
             }
-        } //else {
-        //     const currentSprint = await axios.get(`http://localhost:8000/api/sprint/${id}`);
-        //     const currentSprintId = currentSprint.data.currentsprint;
-        //     const response = await axios.get(`http://127.0.0.1:8000/api/sprint/${currentSprintId}`);
-        //
-        //     if (response.data.status === true) {
-        //         this.setState({
-        //             tasks: response.data.tasks,
-        //             loading: false,
-        //         })
-        //     }
-        // }
-    }
+        } else {
+            const id = this.props.path;
 
-    async sprintTasks() {
-        const sprintId = 1;
-        const response = await axios.get(`http://localhost:8000/api/sprint/${sprintId}`);
-
-        if (response.data.status === true) {
-            this.setState({
-                tasks: response.data.tasks,
-                loading: false,
-            })
+            const response = await axios.get(`http://localhost:8000/api/sprint/${id}`);
+            // console.log(response.data.tasks);
+            if (response.data.status === true) {
+                this.setState({
+                    tasks: response.data.tasks,
+                    loading: false,
+                })
+            }
         }
     }
 
@@ -75,16 +63,10 @@ export default class Card extends React.Component {
     }
 
     render() {
-
-        var taskDisplay = "";
-
-        if (this.state.loading) {
-            taskDisplay = <div><h1>Loading ...</h1></div>;
-
-        } else {
-            taskDisplay =
-                this.state.tasks.map((card) => {
-                    return (
+        return (
+            <div>
+                {
+                    this.state.tasks ? this.state.tasks.map(card =>
                         <div key={card.id} className="card" onChange={() => this.updateTask(card.id)}>
                             <div>
                                 <input type="checkbox"/>
@@ -130,12 +112,8 @@ export default class Card extends React.Component {
                                 <p>Due date</p>
                             </div>
                         </div>
-                    )
-                })
-        }
-        return (
-            <div>
-                {taskDisplay}
+                    ) : ""
+                }
             </div>
         )
     }
