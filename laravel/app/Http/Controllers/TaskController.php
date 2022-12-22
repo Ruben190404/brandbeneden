@@ -51,7 +51,7 @@ class TaskController extends Controller
 
         return response()->json([
             'status'=> true,
-            'message'=>'updateedde',
+            'message'=>'updated',
         ]);
     }
     public function getTasksBySprint($sprintId)

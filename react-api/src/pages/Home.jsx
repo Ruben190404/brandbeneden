@@ -7,6 +7,7 @@ import ProjectAddForm from "../components/Project/create";
 import SprintBurndown from "../components/SprintBurndown";
 
 
+
 function Home() {
     return (
         <div>
@@ -23,6 +24,7 @@ function Home() {
             {/*<ProjectAddForm />*/}
             {/*<ProjectEditForm />*/}
             <Board />
+            {/*<audio src={pop} controls />*/}
         </div>
     )
 }
