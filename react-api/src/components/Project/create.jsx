@@ -1,11 +1,14 @@
 import '../../styles/main.css';
 import axios from "axios";
 import React, {useState, useEffect} from "react";
+import {Multiselect} from "multiselect-react-dropdown";
 
 export default class Create extends React.Component {
 
     constructor(props) {
         super(props);
+
+        this.multiselectRef = React.createRef();
 
         this.state = {
             users: []
@@ -14,6 +17,7 @@ export default class Create extends React.Component {
 
     create() {
         const title = document.getElementById('projectTitle').value;
+        const users = this.multiselectRef.current.getSelectedItems();
         const start_date = document.getElementById('project_start_date').value;
         const end_date = document.getElementById('project_end_date').value;
 
@@ -23,10 +27,24 @@ export default class Create extends React.Component {
             end_date: end_date,
 
         }).then((response) => {
-            window.location.reload();
+            // window.location.reload();
+            console.log(users);
         }).catch((error) => {
             console.log(error);
         })
+    }
+
+    cancel() {
+        document.getElementById("project-add-form").style.display = "none";
+        const title = document.getElementById('projectTitle');
+        const start_date = document.getElementById('project_start_date');
+        const end_date = document.getElementById('project_end_date');
+
+        this.multiselectRef.current.resetSelectedValues();
+
+        title.value = '';
+        start_date.value = '';
+        end_date.value = '';
     }
 
     componentDidMount() {
@@ -44,19 +62,14 @@ export default class Create extends React.Component {
                     <h2>Add Project</h2>
                     <input className="text-center rounded-lg border-2 border-black bg-violet-300 w-52" type="text"
                            id="projectTitle" name="title" placeholder="Name"/>
-                    <input list="users"/>
-
-                    <datalist id="users">
-                        {
-                            this.state.users.users
-                                ? this.state.users.users.map((user) => {
-                                    return <option key={user.id} defaultValue={user.id}>
-                                            {user.name}
-                                        </option>
-                                }) : ""
-                        }
-                    </datalist>
-                    <button>add</button>
+                    <Multiselect
+                        options={this.state.users.users}
+                        displayValue="name"
+                        placeholder={"Select Users"}
+                        ref={this.multiselectRef}
+                        className="bg-violet-300 rounded-lg border-2 border-black w-52"
+                        id="projectUsers"
+                    />
                     <div
                         className="flex flex-col items-center rounded-lg border-2 border-black w-52 h-16 bg-violet-300">
                         <label htmlFor="start_date">Start Date</label>
@@ -71,6 +84,9 @@ export default class Create extends React.Component {
                     </div>
                     <button className="text-center rounded-lg border-2 border-black w-32 bg-green-400" type="button"
                             onClick={this.create}>Submit
+                    </button>
+                    <button className="text-center rounded-lg border-2 border-black w-32 bg-red-400" type="button"
+                            onClick={this.cancel}>Cancel
                     </button>
                 </form>
             </div>
