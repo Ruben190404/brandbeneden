@@ -7,23 +7,30 @@ export default class Card extends React.Component {
         super(props);
 
         this.state = {
-            sprint: {},
+            sprints: [],
             tasks: [],
+
             loading: true
         }
     }
 
     handleInput = (e) => {
-
         let id = parseInt(e.target.getAttribute('data-id'));
-
         var result = this.state.tasks.find(item => item.id === id);
 
         result[e.target.name] = e.target.value;
+        if (e.target.name === "sprint_id") {
+            setTimeout(this.reload, 50);
+        }
+    }
+
+    reload() {
+        window.location.reload();
     }
 
     componentDidMount() {
         this.get()
+        this.sprintData()
     }
 
     async get() {
@@ -40,7 +47,6 @@ export default class Card extends React.Component {
             }
         } else {
             const id = this.props.path;
-
             const response = await axios.get(`http://localhost:8000/api/sprint/${id}`);
             // console.log(response.data.tasks);
             if (response.data.status === true) {
@@ -49,6 +55,16 @@ export default class Card extends React.Component {
                     loading: false,
                 })
             }
+        }
+    }
+
+    async sprintData() {
+        const response = await axios.get(`http://localhost:8000/api/sprints`);
+        console.log(response.data.sprints);
+        if (response.data.status === true) {
+            this.setState({
+                sprints: response.data.sprints,
+            })
         }
     }
 
@@ -74,17 +90,18 @@ export default class Card extends React.Component {
                             <div className="first-cell">
                                 <textarea name="title" id="title" data-id={card.id} defaultValue={card.title}
                                           onChange={this.handleInput} value={this.state.title} cols="30"
-                                          rows="3"></textarea>
+                                          rows="3">
+                                </textarea>
                             </div>
                             <div className="table-cell">
-                                <select name="user_id" id="" data-id={card.id} defaultValue={card.user_id}
+                                <select name="user_id" id="user" data-id={card.id} defaultValue={card.user_id}
                                         onChange={this.handleInput} value={this.state.user_id}>
                                     <option value="1">Sjors</option>
                                     <option value="2">Ruben</option>
                                 </select>
                             </div>
                             <div className="table-cell">
-                                <select name="status" id="" data-id={card.id} defaultValue={card.status}
+                                <select name="status" id="status" data-id={card.id} defaultValue={card.status}
                                         onChange={this.handleInput} value={this.state.status}>
                                     <option value="1">To Do</option>
                                     <option value="2">Open</option>
@@ -92,11 +109,25 @@ export default class Card extends React.Component {
                                 </select>
                             </div>
                             <div className="table-cell">
-                                <select name="priority" id="" data-id={card.id} defaultValue={card.priority}
+                                <select name="priority" id="priority" data-id={card.id} defaultValue={card.priority}
                                         onChange={this.handleInput} value={this.state.priority}>
                                     <option value="1">Low</option>
                                     <option value="2">Medium</option>
                                     <option value="3">High</option>
+                                </select>
+                            </div>
+                            <div className="table-cell">
+                                <select name="sprint_id" id="sprint_id" data-id={card.id}
+                                        onChange={this.handleInput}>
+                                    {
+                                        this.state.sprints ?
+                                            this.state.sprints.map(sprint =>
+                                                <option key={sprint.id} defaultValue={sprint.id}
+                                                        selected={sprint.id === card.sprint_id ? "selected" : null}>
+                                                    {sprint.title}
+                                                </option>
+                                            ) : ""
+                                    }
                                 </select>
                             </div>
                             <div className="table-cell">

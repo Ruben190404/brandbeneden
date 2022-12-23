@@ -22,16 +22,16 @@ function Board() {
         axios.get(`http://localhost:8000/api/currentsprint`).then(res => {
             const currentSprint = res.data.currentsprint;
             axios.get(`http://localhost:8000/api/sprintData/${currentSprint}`).then(res => {
-                let start_date_data = new Date(res.data.sprint.start_date).toISOString().slice(0, 10);
-                let end_date_data = new Date(res.data.sprint.end_date).toISOString().slice(0, 10);
+                let start_date_data = new Date(res.data.sprint.start_date).toUTCString().slice(5, 16);
+                let end_date_data = new Date(res.data.sprint.end_date).toUTCString().slice(5, 16);
                 setStart(start_date_data);
                 setEnd(end_date_data);
             })
         })
     } else {
         axios.get(`http://localhost:8000/api/sprintData/${id}`).then(res => {
-            let start_date_data = new Date(res.data.sprint.start_date).toISOString().slice(0, 10);
-            let end_date_data = new Date(res.data.sprint.end_date).toISOString().slice(0, 10);
+            let start_date_data = new Date(res.data.sprint.start_date).toUTCString().slice(5, 16);
+            let end_date_data = new Date(res.data.sprint.end_date).toUTCString().slice(5, 16);
             setStart(start_date_data);
             setEnd(end_date_data);
         })
@@ -66,11 +66,12 @@ function Board() {
                     <ul>
                         <li className={"sprint-name"}>
                             <span>Sprint name</span>
-                            <span>{start}/{end}</span>
+                            <span>{start} / {end}</span>
                         </li>
                         <li>Assignee</li>
                         <li>Status</li>
                         <li>Priority</li>
+                        <li>Sprint</li>
                         <li>Est Time</li>
                         <li>Spent Time</li>
                         <li>Due Date</li>

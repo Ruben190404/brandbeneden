@@ -11,7 +11,7 @@ class SprintController extends Controller
     {
         $sprints = Sprint::all();
         return response()->json([
-            'status' => 'success',
+            'status' => true,
             'sprints' => $sprints
         ]);
     }
