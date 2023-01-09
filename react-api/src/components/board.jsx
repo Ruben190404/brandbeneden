@@ -74,6 +74,7 @@ class Board extends React.Component {
         // timer stuff
         clearTimeout(this.timeout[id]);
         this.timeout[id] = setTimeout(() => axios.put(`http://127.0.0.1:8000/api/update-task/${result.id}`, result), 1000)
+        setTimeout(() => window.location.reload(), 2000)
     }
 
     componentDidMount() {
