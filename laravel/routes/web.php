@@ -13,12 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/login/azure', [\App\Http\Controllers\Auth\LoginController::class, 'redirectToProvider'])->name('login.azure');
+Route::get('/callback',[\App\Http\Controllers\Auth\LoginController::class, 'handleProviderCallback']);
 
-require __DIR__.'/auth.php';
+Route::get('/logout',[\App\Http\Controllers\Auth\LoginController::class, 'logout']);

@@ -8,8 +8,11 @@ import ProjectAddForm from "../components/Project/create";
 import SprintBurndown from "../components/SprintBurndown";
 import ProjectEditForm from "../components/Project/edit";
 
-
 function Home() {
+    const handleLogin = () => {
+        return window.location.href = 'https://laravel-api.test/login/azure';
+    }
+
     return (
         <div>
             <Header />
@@ -26,6 +29,7 @@ function Home() {
             {/*<ProjectEditForm />*/}
             <Board />
             {/*<audio src={pop} controls />*/}
+            <button onClick={handleLogin}>login</button>
         </div>
     )
 }

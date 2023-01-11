@@ -2,15 +2,16 @@ import Card from "./card";
 import AddCardButton from "./AddCardButton";
 import React from "react";
 import axios from "axios";
-
-
-
 import ProjectEditForm from "./Project/edit";
 import ProjectAddForm from "./Project/create";
 import List from "./Sprint/list";
+import setConfig from "../adapters/axios"
+
+
+const config = setConfig();
+
 
 //TODO: verander data-id bij input velden van de task card met iets wat niet kan worden verandert door de gebruiker in de inspect!!!
-
 
 
 class Board extends React.Component {
@@ -42,7 +43,7 @@ class Board extends React.Component {
 
         let id = parseInt(e.target.getAttribute('data-id'));
 
-        var result = this.state.tasks.find(item => item.id === id);
+        const result = this.state.tasks.find(item => item.id === id);
 
         result[e.target.name] = e.target.value;
 
@@ -99,7 +100,7 @@ class Board extends React.Component {
 
 
     async get() {
-        const response = await axios.get('http://127.0.0.1:8000/api/tasks');
+        const response = await axios.get('http://127.0.0.1:8000/api/tasks', config);
 
         if (response.data.status === true) {
             this.setState({
@@ -111,7 +112,7 @@ class Board extends React.Component {
 
     render() {
 
-        var taskDisplay = "";
+        let taskDisplay = "";
 
         if (this.state.loading) {
             taskDisplay = <div><h1>Loading ...</h1></div>;
