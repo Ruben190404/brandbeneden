@@ -8,7 +8,6 @@ import axios from "axios";
 import Header from "../header";
 
 // TODO: Maak zodat je de geselecteerde sprint te zien is
-// TODO: Make U button trashcan and softdelete
 // TODO: Als we groepen hebben moeten we checken of je niet vanaf hier een sprint kan veranderen van een andere groep
 
 class SprintEditForm extends Component {
