@@ -2,9 +2,11 @@ import Header from "../components/header";
 import SprintForm from "../components/Sprint/create";
 import SprintShow from "../components/Sprint/show";
 import SprintEditForm from "../components/Sprint/edit";
+import List from "../components/Sprint/list";
 import Board from "../components/board";
 import ProjectAddForm from "../components/Project/create";
 import SprintBurndown from "../components/SprintBurndown";
+import ProjectEditForm from "../components/Project/edit";
 
 
 function Home() {

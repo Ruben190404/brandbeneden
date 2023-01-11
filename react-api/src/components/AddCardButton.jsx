@@ -11,7 +11,7 @@ class TaskAdd extends Component{
         status: 1,
         spend_time: 1,
         estimated_time: 1,
-        task_id: 1,
+        task_id: 0,
     }
 
     saveTask = async (e) => {
@@ -20,8 +20,6 @@ class TaskAdd extends Component{
         const response = await axios.post('http://127.0.0.1:8000/api/add-task', this.state)
 
         if (response.data.status === true) {
-
-            console.log(response.data.message);
 
             window.location.reload();
         }

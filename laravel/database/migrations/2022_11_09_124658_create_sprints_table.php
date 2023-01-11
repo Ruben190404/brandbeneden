@@ -22,7 +22,11 @@ return new class extends Migration
             $table->unsignedBigInteger('project_id');
             $table->timestamps();
 
+
             $table->foreign('project_id')->references('id')->on('projects');
+
+            $table->softDeletes();
+
         });
     }
 

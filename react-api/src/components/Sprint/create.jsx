@@ -5,6 +5,8 @@ import {Link} from "react-router-dom";
 
 import axios from "axios";
 
+// TODO: Fix Cancel Button to Cancel
+
 class SprintForm extends Component {
 
     state = {
@@ -75,11 +77,9 @@ class SprintForm extends Component {
                         <option value='3'>Placeholder project 3</option>
                     </select>
                     <div>
-                        <button className="text-center rounded-lg border-2 border-black w-32 bg-red-400"
-                                type="submit">cancel
+                        <button className="text-center rounded-lg border-2 border-black w-32 bg-red-400">cancel
                         </button>
-                        <button className="text-center rounded-lg border-2 border-black w-32 bg-green-400"
-                                type="submit">Submit
+                        <button className="text-center rounded-lg border-2 border-black w-32 bg-green-400" type="submit">Submit
                         </button>
                     </div>
                 </form>
