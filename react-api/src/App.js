@@ -1,6 +1,7 @@
 import Home from "./pages/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Burndown from "./pages/Burndown";
+import Dashboard from "./pages/Dashboard";
 
 
 function App() {
@@ -17,6 +18,12 @@ function App() {
                     path={`/burndown`}
                     element={
                         <Burndown />
+                    }
+                />
+                <Route
+                    path={`/dashboard`}
+                    element={
+                        <Dashboard />
                     }
                 />
             </Routes>
