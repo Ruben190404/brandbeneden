@@ -60,7 +60,7 @@ export default class Card extends React.Component {
 
     async sprintData() {
         const response = await axios.get(`http://localhost:8000/api/sprints`);
-        console.log(response.data.sprints);
+        // console.log(response.data.sprints);
         if (response.data.status === true) {
             this.setState({
                 sprints: response.data.sprints,

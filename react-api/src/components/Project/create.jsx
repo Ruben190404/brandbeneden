@@ -1,14 +1,15 @@
 import '../../styles/main.css';
 import axios from "axios";
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, createRef} from "react";
 import {Multiselect} from "multiselect-react-dropdown";
+import {useParams} from "react-router-dom";
 
 export default class Create extends React.Component {
 
     constructor(props) {
         super(props);
 
-        this.multiselectRef = React.createRef();
+        this.multiselectRef = createRef();
 
         this.state = {
             users: []
@@ -29,6 +30,7 @@ export default class Create extends React.Component {
         }).then((response) => {
             // window.location.reload();
             console.log(users);
+            console.log(this.multiselectRef.current.getSelectedItems());
         }).catch((error) => {
             console.log(error);
         })

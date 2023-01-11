@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 
+
 export default class TaskAdd extends React.Component {
 
     constructor(props) {
@@ -22,8 +23,10 @@ export default class TaskAdd extends React.Component {
     async setCurrentSprint() {
         await axios.get(`http://localhost:8000/api/currentsprint`).then((res) => {
             const currentSprintId = res.data.currentsprint;
-            if (res.data.status === true) {
+            if (res.data.status === true && window.location.href === "http://localhost:3000/") {
                 this.state.sprint_id = currentSprintId;
+            } else {
+                this.state.sprint_id = this.props.path;
             }
         }).catch((err) => {
             console.log(err);
