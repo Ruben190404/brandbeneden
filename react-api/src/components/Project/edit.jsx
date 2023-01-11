@@ -2,18 +2,17 @@ import '../../styles/main.css';
 import {useState} from "react";
 import axios from "axios";
 
-
 function Update() {
     const title = document.getElementById('projectUpdateTitle').value;
     const start_date = document.getElementById('project_update_start_date').value;
     const end_date = document.getElementById('project_update_end_date').value;
+    const id = document.getElementById('id').value;
 
-    axios.put("http://localhost:8000/api/projects/update/1", {
+    axios.put(`http://localhost:8000/api/projects/update/${id}`, {
         title: title,
         start_date: start_date,
         end_date: end_date,
     }).then((response) => {
-        console.log("Updated");
         window.location.reload();
     }).catch((error) => {
         console.log(error);
@@ -21,22 +20,24 @@ function Update() {
 }
 
 function SoftDelete() {
-    axios.put("http://localhost:8000/api/projects/delete/1",{
+    const id = document.getElementById('id').value;
+
+    axios.put(`http://localhost:8000/api/projects/delete/${id}`,{
         soft_delete: new Date().toISOString().slice(0, 19).replace('T', ' ').replace('Z', '')
     }).then((response) => {
-        console.log("Soft deleted");
         window.location.reload();
     }).catch((error) => {
         console.log(error);
     })
 }
 
-function ProjectEditForm() {
+function ProjectEditForm(props) {
     const [title, setTitle] = useState('');
     const [start_date, setStart_date] = useState('');
     const [end_date, setEnd_date] = useState('');
+    const id = props.id;
 
-    axios.get("http://localhost:8000/api/projects/1").then((response) => {
+    axios.get(`http://localhost:8000/api/projects/${id}`).then((response) => {
         let start_date_data = new Date(response.data.project.start_date).toISOString().slice(0, 10);
         let end_date_data = new Date(response.data.project.end_date).toISOString().slice(0, 10);
         setTitle(response.data.project.title);
@@ -50,6 +51,7 @@ function ProjectEditForm() {
         <div className="flex justify-center items-center h-screen w-full fixed">
             <form className="form justify-around primary-background-colour">
                 <h2>Edit Project</h2>
+                <input type="hidden" name="id" id="id" value={id}/>
                 <input className="text-center rounded-lg border-2 border-black bg-violet-300 w-52" type="text"
                        id="projectUpdateTitle" name="title" placeholder="Title" defaultValue={title}/>
                 <p>Dropdown voor members</p>

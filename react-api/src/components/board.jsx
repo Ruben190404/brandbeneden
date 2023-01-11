@@ -41,7 +41,7 @@ function Board() {
         <div className={"board"}>
             <div className={"sprint-nav"}>
                 <ShowSprints/>
-                <div className={"sprint-nav-items-wrapper"}>
+                <div className={"sprint-nav-items-wrapper mt-1"}>
                     <button onClick={renderSprintForm} className={"sprint-nav-item"}>
                         <svg fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="30px"
                              height="30px">
@@ -78,7 +78,6 @@ function Board() {
                     <Card path={id}/>
                 </div>
             </div>
-            <div id="project-edit-form" style={{display: "none"}}><ProjectEditForm/></div>
             <div id="project-add-form" style={{display: "none"}}><ProjectAddForm/></div>
             <div id="sprint-add-form" style={{display: "none"}}><SprintForm/></div>
         </div>
