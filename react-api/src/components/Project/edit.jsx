@@ -37,8 +37,8 @@ function ProjectEditForm() {
     const [end_date, setEnd_date] = useState('');
 
     axios.get("http://localhost:8000/api/projects/1").then((response) => {
-        let start_date_data = new Date(response.data.project.start_date).toISOString().slice(0, 10);
-        let end_date_data = new Date(response.data.project.end_date).toISOString().slice(0, 10);
+        let start_date_data = new Date(response.data.project.start_date  + "Z").toISOString().slice(0, 10);
+        let end_date_data = new Date(response.data.project.end_date + "Z").toISOString().slice(0, 10);
         setTitle(response.data.project.title);
         setStart_date(start_date_data);
         setEnd_date(end_date_data);

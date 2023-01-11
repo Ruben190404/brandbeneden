@@ -11,7 +11,7 @@ class TaskAdd extends Component{
         status: 1,
         spend_time: 1,
         estimated_time: 1,
-        task_id: 1,
+        task_id: 0,
     }
 
     saveTask = async (e) => {
