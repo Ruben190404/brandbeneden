@@ -50,7 +50,6 @@ export default class Header extends React.Component {
                                             <div key={project.id} className="flex justify-between">
                                                 <p>{project.title}</p>
                                                 <button onClick={this.renderProjectEditForm}>Edit</button>
-
                                             </div>
                                         ) : ""
                                 }

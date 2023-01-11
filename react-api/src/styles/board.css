@@ -10,7 +10,7 @@
     width: 100%;
 }
 
-.card-nav ul{
+.card-nav ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -106,6 +106,7 @@
 }
 
 .cards {
-    display: flex;
-    flex-direction: column;
+    @apply
+    flex
+    flex-col
 }

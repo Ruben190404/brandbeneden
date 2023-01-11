@@ -18,7 +18,7 @@ class Board extends React.Component {
 
         this.state = {
             tasks: [],
-            loading: true,
+            loading: true
         }
     }
 
@@ -178,11 +178,11 @@ class Board extends React.Component {
                         {/*<Card/>*/}
                     </div>
                 </div>
-                // misschien nog ) }
                 <div id="project-edit-form" style={{display: "none"}}><ProjectEditForm/></div>
                 <div id="project-add-form" style={{display: "none"}}><ProjectAddForm/></div>
             </div>
         )
     }
 }
+
 export default Board
