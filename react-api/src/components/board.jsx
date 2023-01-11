@@ -4,12 +4,9 @@ import React from "react";
 import axios from "axios";
 import ProjectEditForm from "./Project/edit";
 import ProjectAddForm from "./Project/create";
+import setConfig from "../adapters/axios"
 
-const windowUrl = window.location.search;
-const params = new URLSearchParams(windowUrl);
-const config = {
-    headers: { Authorization: `Bearer ${params.get('b')}` }
-};
+const config = setConfig();
 
 class Board extends React.Component {
 
@@ -59,7 +56,7 @@ class Board extends React.Component {
 
     render() {
 
-        var taskDisplay = "";
+        let taskDisplay = "";
 
         if (this.state.loading) {
             taskDisplay = <div><h1>Loading ...</h1></div>;

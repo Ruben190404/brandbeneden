@@ -21,7 +21,7 @@ class LoginController extends Controller
         $user = User::where('email', $azureUser->getEmail())->first();
 
         if ($user) {
-            $token = $user->createToken('AuthToken');
+            $token = $user->createToken('auth_token');
 
             Auth::login($user, true);
 
@@ -30,7 +30,7 @@ class LoginController extends Controller
                 'name' => $azureUser->getName(),
                 'email' => $azureUser->getEmail()
             ]);
-            $token = $user->createToken('AuthToken');
+            $token = $user->createToken('auth_token');
 
             Auth::login($newUser, true);
         }
