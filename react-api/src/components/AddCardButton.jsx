@@ -1,5 +1,8 @@
 import React, {Component} from "react";
 import axios from "axios";
+import setConfig from "../adapters/axios"
+
+const config = setConfig();
 
 class TaskAdd extends Component{
 
@@ -17,7 +20,7 @@ class TaskAdd extends Component{
     saveTask = async (e) => {
         e.preventDefault();
 
-        const response = await axios.post('http://127.0.0.1:8000/api/add-task', this.state)
+        const response = await axios.post('http://127.0.0.1:8000/api/add-task', this.state, config)
 
         if (response.data.status === true) {
 
@@ -27,7 +30,6 @@ class TaskAdd extends Component{
     }
 
     render() {
-
         return(
                 <form className={"add-card"} onSubmit={this.saveTask}>
                     <button type="submit">

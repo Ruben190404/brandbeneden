@@ -1,9 +1,10 @@
 import '../../styles/main.css';
-
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
-
 import axios from "axios";
+import setConfig from "../../adapters/axios"
+
+const config = setConfig();
 
 class SprintForm extends Component {
 
@@ -24,7 +25,7 @@ class SprintForm extends Component {
     saveSprint = async (e) => {
         e.preventDefault();
 
-        const response = await axios.post('http://127.0.0.1:8000/api/add-sprint', this.state)
+        const response = await axios.post('http://127.0.0.1:8000/api/add-sprint', this.state, config)
 
         if (response.data.status === true) {
 
