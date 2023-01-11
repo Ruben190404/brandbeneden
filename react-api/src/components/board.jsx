@@ -4,8 +4,9 @@ import React from "react";
 import axios from "axios";
 import ProjectEditForm from "./Project/edit";
 import ProjectAddForm from "./Project/create";
+import List from "./Sprint/list";
 
-//TODO: verander data-id bij input velden van de task card met iets wat je niet kan veranderen!!!
+//TODO: verander data-id bij input velden van de task card met iets wat niet kan worden verandert door de gebruiker in de inspect!!!
 
 class Board extends React.Component {
 
@@ -14,10 +15,21 @@ class Board extends React.Component {
 
         this.state = {
             tasks: [],
-            loading: true
+            loading: true,
+            style: "hidden"
         }
 
         this.timeout = [];
+    }
+
+    sprintListDisplay = async (e) => {
+        if (this.state.style === "hidden") {
+            this.setState({style: "show"})
+            console.log(this.state.style)
+        } else {
+            this.setState({style: "hidden"})
+            console.log(this.state.style)
+        }
     }
 
     handleInput = async (e) => {
@@ -223,6 +235,10 @@ class Board extends React.Component {
         }
         return (
             <div className={"board"}>
+                <div className={this.state.style}>
+                    <List/>
+                    <div onClick={()=>this.sprintListDisplay()} className="bg-red-400 w-48 p-1 m-1 text-center rounded-lg border-2 border-black block hover:bg-red-500 active:bg-red-600">Cancel</div>
+                </div>
                 <div className={"sprint-nav"}>
                     <div className={"sprint-nav-sprints"}>
                         <div className={"sprint-nav-sprints-item"}>Warming up</div>
@@ -241,7 +257,7 @@ class Board extends React.Component {
                             </svg>
                             <span>Add new sprint</span>
                         </div>
-                        <div className={"sprint-nav-item"}>
+                        <div onClick={()=>this.sprintListDisplay()} className={"sprint-nav-item"}>
                             <img src="https://img.icons8.com/ios/50/null/engineering.png" alt={"Gear icon"}
                                  className={"gear-icon"}/>
                             <span>Edit sprint</span>
