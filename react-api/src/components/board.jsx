@@ -4,9 +4,15 @@ import React from "react";
 import axios from "axios";
 import ProjectEditForm from "./Project/edit";
 import ProjectAddForm from "./Project/create";
+import List from "./Sprint/list";
 import setConfig from "../adapters/axios"
 
+
 const config = setConfig();
+
+
+//TODO: verander data-id bij input velden van de task card met iets wat niet kan worden verandert door de gebruiker in de inspect!!!
+
 
 class Board extends React.Component {
 
@@ -15,17 +21,77 @@ class Board extends React.Component {
 
         this.state = {
             tasks: [],
-            loading: true
+            loading: true,
+            style: "hidden"
+        }
+
+        this.timeout = [];
+    }
+
+    sprintListDisplay = async (e) => {
+        if (this.state.style === "hidden") {
+            this.setState({style: "show"})
+            console.log(this.state.style)
+        } else {
+            this.setState({style: "hidden"})
+            console.log(this.state.style)
         }
     }
 
-    handleInput = (e) => {
+    handleInput = async (e) => {
+
 
         let id = parseInt(e.target.getAttribute('data-id'));
 
         const result = this.state.tasks.find(item => item.id === id);
 
         result[e.target.name] = e.target.value;
+
+        // timer stuff
+        clearTimeout(this.timeout[id]);
+        this.timeout[id] = setTimeout(() => axios.put(`http://127.0.0.1:8000/api/update-task/${result.id}`, result), 1000)
+
+
+    }
+
+    SoftDelete(id) {
+        var result = this.state.tasks.find(item => item.id === id);
+
+        if (window.confirm("You Sure") == true) {
+            axios.put(`http://127.0.0.1:8000/api/delete-task/${result.id}`,{soft_delete: new Date().toISOString().slice(0, 19).replace('T', ' ').replace('Z', '')});
+            document.getElementById(id).remove();
+            alert("It is Deleted");
+        } else {
+            alert("Not Deleted");
+        }
+
+    }
+
+    allowDrop(e) {
+        e.preventDefault();
+    }
+
+    drag(e) {
+        e.dataTransfer.setData("text", e.target.id);
+        console.log(e.target.id);
+    }
+
+    drop = async(e) => {
+        e.preventDefault();
+        var data = e.dataTransfer.getData("text");
+        e.target.appendChild(document.getElementById(data));
+        console.log(data + "dub");
+        console.log(e.target.id);
+
+        let id = parseInt(data);
+
+        var result = this.state.tasks.find(item => item.id === id);
+
+        result.task_id = e.target.id;
+
+        // timer stuff
+        clearTimeout(this.timeout[id]);
+        this.timeout[id] = setTimeout(() => axios.put(`http://127.0.0.1:8000/api/update-task/${result.id}`, result).then(() => window.location.reload()), 1000)
     }
 
     componentDidMount() {
@@ -44,16 +110,6 @@ class Board extends React.Component {
         }
     }
 
-    updateTask = async (id) => {
-        const task_id = id;
-
-        const don = this.state.tasks.find(obj => {
-            return obj.id === task_id;
-        });
-
-        const response = await axios.put(`http://127.0.0.1:8000/api/update-task/${task_id}`, don, config);
-    }
-
     render() {
 
         let taskDisplay = "";
@@ -62,60 +118,146 @@ class Board extends React.Component {
             taskDisplay = <div><h1>Loading ...</h1></div>;
 
         } else {
+
             taskDisplay =
                 this.state.tasks.map((card) => {
-                    return (
-                        <div key={card.id} className="card" onChange={() => this.updateTask(card.id)}>
-                            <div>
-                                <input type="checkbox"/>
+                    if (card.task_id == 0) {
+                        return (
+                            <div key={card.id} className={"flex flex-col mt-2 mb-2"} id={card.id} draggable={true}
+                                 onDragStart={this.drag}>
+                                <div className="card">
+                                    <div>
+                                        <input type="checkbox"/>
+                                    </div>
+                                    <div className="first-cell">
+                                    <textarea name="title" id="title" data-id={card.id} defaultValue={card.title}
+                                              onChange={this.handleInput} value={this.state.title} cols="30"
+                                              rows="3"></textarea>
+                                    </div>
+                                    <div className="table-cell">
+                                        <select name="user_id" id="" data-id={card.id} defaultValue={card.user_id}
+                                                onChange={this.handleInput} value={this.state.user_id}>
+                                            <option value="1">Sjors</option>
+                                            <option value="2">Ruben</option>
+                                        </select>
+                                    </div>
+                                    <div className="table-cell">
+                                        <select name="status" id="" data-id={card.id} defaultValue={card.status}
+                                                onChange={this.handleInput} value={this.state.status}>
+                                            <option value="1">To Do</option>
+                                            <option value="2">Open</option>
+                                            <option value="3">Done</option>
+                                        </select>
+                                    </div>
+                                    <div className="table-cell">
+                                        <select name="priority" id="" data-id={card.id} defaultValue={card.priority}
+                                                onChange={this.handleInput} value={this.state.priority}>
+                                            <option value="1">Low</option>
+                                            <option value="2">Medium</option>
+                                            <option value="3">High</option>
+                                        </select>
+                                    </div>
+                                    <div className="table-cell">
+                                        <input name="estimated_time" type="number" data-id={card.id}
+                                               defaultValue={card.estimated_time} onChange={this.handleInput}
+                                               value={this.state.estimated_time}/>
+                                    </div>
+                                    <div className="table-cell">
+                                        <input name="spend_time" type="number" data-id={card.id}
+                                               defaultValue={card.spend_time}
+                                               onChange={this.handleInput} value={this.state.spend_time}/>
+                                    </div>
+                                    <div className="table-cell last-cell">
+                                        <p>Due date</p>
+                                    </div>
+                                    <button onClick={() => this.SoftDelete(card.id)} className={"bg-red-600 text-white"}>Delete</button>
+                                </div>
+                                <div id={card.id} className={"w-full bg-amber-600 h-fit"} onDrop={this.drop}
+                                     onDragOver={this.allowDrop}>add
+                                    {
+                                        this.state.tasks.map((task) => {
+                                            if (card.id == task.task_id) {
+                                                return (
+                                                    <div key={task.id} className={"bg-blue-700 flex flex-col mt-2 mb-2"} id={task.id} draggable={true}
+                                                         onDragStart={this.drag}>
+                                                        <div /*id={card.id}*/ className="card" /*draggable={true} onDragStart={this.drag}*/>
+                                                            <div>
+                                                                <input type="checkbox"/>
+                                                            </div>
+                                                            <div className="first-cell">
+                                    <textarea name="title" id="title" data-id={task.id} defaultValue={task.title}
+                                              onChange={this.handleInput} value={this.state.title} cols="30"
+                                              rows="3"></textarea>
+                                                            </div>
+                                                            <div className="table-cell">
+                                                                <select name="user_id" id="" data-id={task.id} defaultValue={task.user_id}
+                                                                        onChange={this.handleInput} value={this.state.user_id}>
+                                                                    <option value="1">Sjors</option>
+                                                                    <option value="2">Ruben</option>
+                                                                </select>
+                                                            </div>
+                                                            <div className="table-cell">
+                                                                <select name="status" id="" data-id={task.id} defaultValue={task.status}
+                                                                        onChange={this.handleInput} value={this.state.status}>
+                                                                    <option value="1">To Do</option>
+                                                                    <option value="2">Open</option>
+                                                                    <option value="3">Done</option>
+                                                                </select>
+                                                            </div>
+                                                            <div className="table-cell">
+                                                                <select name="priority" id="" data-id={task.id} defaultValue={task.priority}
+                                                                        onChange={this.handleInput} value={this.state.priority}>
+                                                                    <option value="1">Low</option>
+                                                                    <option value="2">Medium</option>
+                                                                    <option value="3">High</option>
+                                                                </select>
+                                                            </div>
+                                                            <div className="table-cell">
+                                                                <input name="estimated_time" type="number" data-id={task.id}
+                                                                       defaultValue={task.estimated_time} onChange={this.handleInput}
+                                                                       value={this.state.estimated_time}/>
+                                                            </div>
+                                                            <div className="table-cell">
+                                                                <input name="spend_time" type="number" data-id={task.id}
+                                                                       defaultValue={task.spend_time}
+                                                                       onChange={this.handleInput} value={this.state.spend_time}/>
+                                                            </div>
+                                                            <div className="table-cell last-cell">
+                                                                <p>Due date</p>
+                                                            </div>
+                                                            <button onClick={() => this.SoftDelete(task.id)} className={"bg-red-600 text-white"}>Delete</button>
+                                                        </div>
+                                                    </div>
+                                                )
+                                            }
+                                        })
+                                    }
+                                </div>
                             </div>
-                            <div className="first-cell">
-                                <textarea name="title" id="title" data-id={card.id} defaultValue={card.title}
-                                          onChange={this.handleInput} value={this.state.title} cols="30"
-                                          rows="3"></textarea>
-                            </div>
-                            <div className="table-cell">
-                                <select name="user_id" id="" data-id={card.id} defaultValue={card.user_id}
-                                        onChange={this.handleInput} value={this.state.user_id}>
-                                    <option value="1">Sjors</option>
-                                    <option value="2">Ruben</option>
-                                </select>
-                            </div>
-                            <div className="table-cell">
-                                <select name="status" id="" data-id={card.id} defaultValue={card.status}
-                                        onChange={this.handleInput} value={this.state.status}>
-                                    <option value="1">To Do</option>
-                                    <option value="2">Open</option>
-                                    <option value="3">Done</option>
-                                </select>
-                            </div>
-                            <div className="table-cell">
-                                <select name="priority" id="" data-id={card.id} defaultValue={card.priority}
-                                        onChange={this.handleInput} value={this.state.priority}>
-                                    <option value="1">Low</option>
-                                    <option value="2">Medium</option>
-                                    <option value="3">High</option>
-                                </select>
-                            </div>
-                            <div className="table-cell">
-                                <input name="estimated_time" type="number" data-id={card.id}
-                                       defaultValue={card.estimated_time} onChange={this.handleInput}
-                                       value={this.state.estimated_time}/>
-                            </div>
-                            <div className="table-cell">
-                                <input name="spend_time" type="number" data-id={card.id} defaultValue={card.spend_time}
-                                       onChange={this.handleInput} value={this.state.spend_time}/>
-                            </div>
-                            <div className="table-cell last-cell">
-                                <p>Due date</p>
-                            </div>
-                        </div>
 
-                    )
+                        )
+                    }
                 })
         }
         return (
             <div className={"board"}>
+                <div className={this.state.style}>
+                    <List/>
+                    <div onClick={()=>this.sprintListDisplay()} className="bg-red-400 w-48 p-1 m-1 text-center rounded-lg border-2 border-black block hover:bg-red-500 active:bg-red-600">Cancel</div>
+
+function Board() {
+    return (
+        <div className={"board"}>
+            <div className={"sprint-nav"}>
+                <div className={"sprint-nav-sprints"}>
+                    <div className={"sprint-nav-sprints-item"}>Warming up</div>
+                    <div className={"sprint-nav-sprints-item"}>Sprint 1</div>
+                    <div className={"sprint-nav-sprints-item"}>Sprint 2</div>
+                    <div className={"sprint-nav-sprints-item"}>Sprint 3</div>
+                    <div className={"sprint-nav-sprints-item"}>Sprint 4</div>
+                    <div className={"sprint-nav-sprints-item"}>Cooling down</div>
+
+                </div>
                 <div className={"sprint-nav"}>
                     <div className={"sprint-nav-sprints"}>
                         <div className={"sprint-nav-sprints-item"}>Warming up</div>
@@ -134,7 +276,7 @@ class Board extends React.Component {
                             </svg>
                             <span>Add new sprint</span>
                         </div>
-                        <div className={"sprint-nav-item"}>
+                        <div onClick={()=>this.sprintListDisplay()} className={"sprint-nav-item"}>
                             <img src="https://img.icons8.com/ios/50/null/engineering.png" alt={"Gear icon"}
                                  className={"gear-icon"}/>
                             <span>Edit sprint</span>
@@ -165,7 +307,7 @@ class Board extends React.Component {
                         {/*</div>*/}
                         <AddCardButton/>
                     </div>
-                    <div className={"cards"}>
+                    <div className={"cards"} id="0" onDrop={this.drop} onDragOver={this.allowDrop}>
                         {taskDisplay}
                         {/*<Card/>*/}
                         {/*<Card/>*/}
@@ -175,8 +317,6 @@ class Board extends React.Component {
                         {/*<Card/>*/}
                     </div>
                 </div>
-                <div id="project-edit-form" style={{display: "none"}}><ProjectEditForm/></div>
-                <div id="project-add-form" style={{display: "none"}}><ProjectAddForm/></div>
             </div>
         )
     }

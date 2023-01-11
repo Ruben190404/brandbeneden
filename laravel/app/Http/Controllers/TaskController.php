@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sprint;
 use App\Models\Task;
 use Illuminate\Http\Request;
 
@@ -32,7 +33,6 @@ class TaskController extends Controller
 
         return response()->json([
             'status' => true,
-            'message'=>'New task weyghj,zdhvgzfjdkjmndguhj',
         ]);
     }
 
@@ -52,5 +52,21 @@ class TaskController extends Controller
             'status'=> true,
             'message'=>'updated',
         ]);
+    }
+    public function getTasksBySprint($sprintId)
+    {
+        return response()->json([
+            'status' => true,
+            'sprint' => Sprint::findOrFail($sprintId),
+            'tasks' => Sprint::findOrFail($sprintId)->tasks
+
+        ]);
+    }
+
+    public function delete(Task $task, Request $request)
+    {
+        $task->deleted_at = $request->input('soft_delete');
+
+        $task->save();
     }
 }

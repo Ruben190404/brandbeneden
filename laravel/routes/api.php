@@ -23,9 +23,15 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/tasks', [\App\Http\Controllers\TaskController::class, 'index']);
     Route::post('/add-task', [\App\Http\Controllers\TaskController::class, 'store']);
     Route::put('/update-task/{task}', [\App\Http\Controllers\TaskController::class, 'update']);
+    Route::put('/delete-task/{task}', [\App\Http\Controllers\TaskController::class, 'delete']);
+    Route::get('/tasks/{sprintId}', [\App\Http\Controllers\TaskController::class, 'getTasksBySprint']);
 
     //Sprint Routes
+    Route::get('/sprints', [\App\Http\Controllers\SprintController::class, 'index']);
     Route::post('/add-sprint', [\App\Http\Controllers\SprintController::class, 'store']);
+    Route::get('/edit-sprint/{sprint}', [\App\Http\Controllers\SprintController::class, 'edit']);
+    Route::put('/update-sprint/{sprint}', [\App\Http\Controllers\SprintController::class, 'update']);
+    Route::put('/delete-sprint/{sprint}', [\App\Http\Controllers\SprintController::class, 'delete']);
 
     //Project Routes
     Route::get('/projects', [ProjectController::class, 'index']);

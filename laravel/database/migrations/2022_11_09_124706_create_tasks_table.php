@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->longText('description');
             $table->integer('user_id');
+            $table->unsignedBigInteger('sprint_id');
             $table->integer('priority');
             $table->integer('status');
             $table->integer('spend_time');
@@ -25,6 +26,8 @@ return new class extends Migration
             $table->integer('task_id');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('sprint_id')->references('id')->on('sprints');
         });
     }
 
