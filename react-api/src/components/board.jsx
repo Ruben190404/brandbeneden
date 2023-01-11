@@ -238,6 +238,19 @@ class Board extends React.Component {
                 <div className={this.state.style}>
                     <List/>
                     <div onClick={()=>this.sprintListDisplay()} className="bg-red-400 w-48 p-1 m-1 text-center rounded-lg border-2 border-black block hover:bg-red-500 active:bg-red-600">Cancel</div>
+
+function Board() {
+    return (
+        <div className={"board"}>
+            <div className={"sprint-nav"}>
+                <div className={"sprint-nav-sprints"}>
+                    <div className={"sprint-nav-sprints-item"}>Warming up</div>
+                    <div className={"sprint-nav-sprints-item"}>Sprint 1</div>
+                    <div className={"sprint-nav-sprints-item"}>Sprint 2</div>
+                    <div className={"sprint-nav-sprints-item"}>Sprint 3</div>
+                    <div className={"sprint-nav-sprints-item"}>Sprint 4</div>
+                    <div className={"sprint-nav-sprints-item"}>Cooling down</div>
+
                 </div>
                 <div className={"sprint-nav"}>
                     <div className={"sprint-nav-sprints"}>
