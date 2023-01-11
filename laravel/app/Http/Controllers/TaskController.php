@@ -50,23 +50,23 @@ class TaskController extends Controller
 
         return response()->json([
             'status'=> true,
-            'message'=>'updated',
         ]);
     }
+
     public function getTasksBySprint($sprintId)
     {
         return response()->json([
             'status' => true,
             'sprint' => Sprint::findOrFail($sprintId),
             'tasks' => Sprint::findOrFail($sprintId)->tasks
-
         ]);
-    }
+
 
     public function delete(Task $task, Request $request)
     {
         $task->deleted_at = $request->input('soft_delete');
 
         $task->save();
+
     }
 }

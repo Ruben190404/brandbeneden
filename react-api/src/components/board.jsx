@@ -2,11 +2,16 @@ import Card from "./card";
 import AddCardButton from "./AddCardButton";
 import React from "react";
 import axios from "axios";
+
+
+
 import ProjectEditForm from "./Project/edit";
 import ProjectAddForm from "./Project/create";
 import List from "./Sprint/list";
 
 //TODO: verander data-id bij input velden van de task card met iets wat niet kan worden verandert door de gebruiker in de inspect!!!
+
+
 
 class Board extends React.Component {
 
