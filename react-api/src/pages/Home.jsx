@@ -6,6 +6,10 @@ import Board from "../components/board";
 import ProjectAddForm from "../components/Project/create";
 
 function Home() {
+    const handleLogin = () => {
+        return window.location.href = 'https://laravel-api.test/login/azure';
+    }
+
     return (
         <div>
             <Header />
@@ -21,6 +25,7 @@ function Home() {
             {/*<ProjectAddForm />*/}
             {/*<ProjectEditForm />*/}
             <Board />
+            <button onClick={handleLogin}>login</button>
         </div>
     )
 }

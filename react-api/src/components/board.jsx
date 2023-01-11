@@ -5,6 +5,12 @@ import axios from "axios";
 import ProjectEditForm from "./Project/edit";
 import ProjectAddForm from "./Project/create";
 
+const windowUrl = window.location.search;
+const params = new URLSearchParams(windowUrl);
+const config = {
+    headers: { Authorization: `Bearer ${params.get('b')}` }
+};
+
 class Board extends React.Component {
 
     constructor(props) {
@@ -12,7 +18,7 @@ class Board extends React.Component {
 
         this.state = {
             tasks: [],
-            loading: true
+            loading: true,
         }
     }
 
@@ -20,7 +26,7 @@ class Board extends React.Component {
 
         let id = parseInt(e.target.getAttribute('data-id'));
 
-        var result = this.state.tasks.find(item => item.id === id);
+        const result = this.state.tasks.find(item => item.id === id);
 
         result[e.target.name] = e.target.value;
     }
@@ -30,9 +36,8 @@ class Board extends React.Component {
     }
 
 
-
     async get() {
-        const response = await axios.get('http://127.0.0.1:8000/api/tasks');
+        const response = await axios.get('http://127.0.0.1:8000/api/tasks', config);
 
         if (response.data.status === true) {
             this.setState({
@@ -49,7 +54,7 @@ class Board extends React.Component {
             return obj.id === task_id;
         });
 
-        const response = await axios.put(`http://127.0.0.1:8000/api/update-task/${task_id}`, don);
+        const response = await axios.put(`http://127.0.0.1:8000/api/update-task/${task_id}`, don, config);
     }
 
     render() {
@@ -68,33 +73,41 @@ class Board extends React.Component {
                                 <input type="checkbox"/>
                             </div>
                             <div className="first-cell">
-                                <textarea name="title" id="title" data-id={card.id} defaultValue={card.title} onChange={this.handleInput} value={this.state.title} cols="30" rows="3"></textarea>
+                                <textarea name="title" id="title" data-id={card.id} defaultValue={card.title}
+                                          onChange={this.handleInput} value={this.state.title} cols="30"
+                                          rows="3"></textarea>
                             </div>
                             <div className="table-cell">
-                                <select name="user_id" id="" data-id={card.id} defaultValue={card.user_id} onChange={this.handleInput} value={this.state.user_id} >
+                                <select name="user_id" id="" data-id={card.id} defaultValue={card.user_id}
+                                        onChange={this.handleInput} value={this.state.user_id}>
                                     <option value="1">Sjors</option>
                                     <option value="2">Ruben</option>
                                 </select>
                             </div>
                             <div className="table-cell">
-                                <select name="status" id="" data-id={card.id} defaultValue={card.status} onChange={this.handleInput} value={this.state.status} >
+                                <select name="status" id="" data-id={card.id} defaultValue={card.status}
+                                        onChange={this.handleInput} value={this.state.status}>
                                     <option value="1">To Do</option>
                                     <option value="2">Open</option>
                                     <option value="3">Done</option>
                                 </select>
                             </div>
                             <div className="table-cell">
-                                <select name="priority" id="" data-id={card.id} defaultValue={card.priority} onChange={this.handleInput} value={this.state.priority} >
+                                <select name="priority" id="" data-id={card.id} defaultValue={card.priority}
+                                        onChange={this.handleInput} value={this.state.priority}>
                                     <option value="1">Low</option>
                                     <option value="2">Medium</option>
                                     <option value="3">High</option>
                                 </select>
                             </div>
                             <div className="table-cell">
-                                <input name="estimated_time" type="number" data-id={card.id} defaultValue={card.estimated_time} onChange={this.handleInput} value={this.state.estimated_time}/>
+                                <input name="estimated_time" type="number" data-id={card.id}
+                                       defaultValue={card.estimated_time} onChange={this.handleInput}
+                                       value={this.state.estimated_time}/>
                             </div>
                             <div className="table-cell">
-                                <input name="spend_time" type="number" data-id={card.id} defaultValue={card.spend_time} onChange={this.handleInput} value={this.state.spend_time}/>
+                                <input name="spend_time" type="number" data-id={card.id} defaultValue={card.spend_time}
+                                       onChange={this.handleInput} value={this.state.spend_time}/>
                             </div>
                             <div className="table-cell last-cell">
                                 <p>Due date</p>
@@ -165,12 +178,11 @@ class Board extends React.Component {
                         {/*<Card/>*/}
                     </div>
                 </div>
+                // misschien nog ) }
+                <div id="project-edit-form" style={{display: "none"}}><ProjectEditForm/></div>
+                <div id="project-add-form" style={{display: "none"}}><ProjectAddForm/></div>
             </div>
-          // misschien nog ) }
-            <div id="project-edit-form" style={{display: "none"}}><ProjectEditForm/></div>
-            <div id="project-add-form" style={{display: "none"}}><ProjectAddForm/></div>
-        </div>
-    )
+        )
+    }
 }
-
 export default Board
