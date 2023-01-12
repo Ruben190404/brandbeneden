@@ -6,6 +6,10 @@ import SimpleTrashCan from "../../Images/SimpleTrashCan.png";
 
 import axios from "axios";
 import Header from "../header";
+import setConfig from "../../adapters/axios"
+
+
+const config = setConfig();
 
 // TODO: Als we groepen hebben moeten we checken of je niet vanaf hier een sprint kan veranderen van een andere groep
 
@@ -32,7 +36,7 @@ class SprintEditForm extends Component {
         console.log(result)
 
         //Get selected sprint
-        const response = await axios.get(`http://127.0.0.1:8000/api/edit-sprint/${result}`);
+        const response = await axios.get(`http://127.0.0.1:8000/api/edit-sprint/${result}`, config);
 
         if (response.data.status === true) {
             this.setState({
@@ -54,7 +58,7 @@ class SprintEditForm extends Component {
         console.log(result)
 
         //Update selected sprint
-        const response = await axios.put(`http://127.0.0.1:8000/api/update-sprint/${result}`, this.state)
+        const response = await axios.put(`http://127.0.0.1:8000/api/update-sprint/${result}`, this.state, config)
 
         if (response.data.status === true) {
 
@@ -70,8 +74,8 @@ class SprintEditForm extends Component {
         const result = sprintId.replace("/sprint-edit/", "")
         console.log(result)
 
-        if (window.confirm("You Sure") == true) {
-            axios.put(`http://127.0.0.1:8000/api/delete-sprint/${result}`,{soft_delete: new Date().toISOString().slice(0, 19).replace('T', ' ').replace('Z', '')});
+        if (window.confirm("You Sure") === true) {
+            axios.put(`http://127.0.0.1:8000/api/delete-sprint/${result}`, config,{soft_delete: new Date().toISOString().slice(0, 19).replace('T', ' ').replace('Z', '')});
             alert("It is Deleted");
         } else {
             alert("Not Deleted");

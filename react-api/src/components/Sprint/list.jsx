@@ -5,6 +5,10 @@ import {BrowserRouter, Routes, Route,Link} from "react-router-dom";
 
 import axios from "axios";
 import SprintEditForm from "./edit";
+import setConfig from "../../adapters/axios"
+
+
+const config = setConfig();
 
 // TODO: Fix Cancel Button to Cancel
 // TODO: Maak zodat je de geselecteerde sprint te zien is
@@ -29,7 +33,7 @@ class List extends Component {
     }
 
     async get() {
-        const response = await axios.get('http://127.0.0.1:8000/api/sprints');
+        const response = await axios.get('http://127.0.0.1:8000/api/sprints', config);
 
         if (response.data.status === true) {
             this.setState({
