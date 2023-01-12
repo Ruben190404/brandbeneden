@@ -30,7 +30,7 @@
 
 .sprint-nav {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     margin-bottom: 40px;
 }
 

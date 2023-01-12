@@ -24,6 +24,7 @@ class TaskController extends Controller
         $task->title = $request->input('title');
         $task->description = $request->input('description');
         $task->user_id = $request->input('user_id');
+        $task->sprint_id = $request->input('sprint_id');
         $task->priority = $request->input('priority');
         $task->status = $request->input('status');
         $task->spend_time = $request->input('spend_time');
