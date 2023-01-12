@@ -61,6 +61,7 @@ class TaskController extends Controller
             'sprint' => Sprint::findOrFail($sprintId),
             'tasks' => Sprint::findOrFail($sprintId)->tasks
         ]);
+    }
 
 
     public function delete(Task $task, Request $request)
