@@ -32,7 +32,7 @@ function App() {
                             // </ProtectedRoute>
                         }
                     />
-                    <Route path={"/Brundown"}  element={<Burndown />}/>
+                    <Route path={"/Burndown"}  element={<Burndown />}/>
                     <Route path={"/sprint-edit/:id"} element={<SprintEditForm />}/>
                 </Route>
             </Routes>

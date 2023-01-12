@@ -49,16 +49,16 @@ class Board extends React.Component {
 
         // timer stuff
         clearTimeout(this.timeout[id]);
-        this.timeout[id] = setTimeout(() => axios.put(`http://127.0.0.1:8000/api/update-task/${result.id}`, result), 1000)
+        this.timeout[id] = setTimeout(() => axios.put(`http://127.0.0.1:8000/api/update-task/${result.id}`, config, result), 1000)
 
 
     }
 
     SoftDelete(id) {
-        var result = this.state.tasks.find(item => item.id === id);
+        const result = this.state.tasks.find(item => item.id === id);
 
-        if (window.confirm("You Sure") == true) {
-            axios.put(`http://127.0.0.1:8000/api/delete-task/${result.id}`,{soft_delete: new Date().toISOString().slice(0, 19).replace('T', ' ').replace('Z', '')});
+        if (window.confirm("You Sure") === true) {
+            axios.put(`http://127.0.0.1:8000/api/delete-task/${result.id}`, config,{soft_delete: new Date().toISOString().slice(0, 19).replace('T', ' ').replace('Z', '')});
             document.getElementById(id).remove();
             alert("It is Deleted");
         } else {
@@ -91,7 +91,7 @@ class Board extends React.Component {
 
         // timer stuff
         clearTimeout(this.timeout[id]);
-        this.timeout[id] = setTimeout(() => axios.put(`http://127.0.0.1:8000/api/update-task/${result.id}`, result).then(() => window.location.reload()), 1000)
+        this.timeout[id] = setTimeout(() => axios.put(`http://127.0.0.1:8000/api/update-task/${result.id}`, config, result).then(() => window.location.reload()), 1000)
     }
 
     componentDidMount() {
@@ -121,7 +121,7 @@ class Board extends React.Component {
 
             taskDisplay =
                 this.state.tasks.map((card) => {
-                    if (card.task_id == 0) {
+                    if (card.task_id === 0) {
                         return (
                             <div key={card.id} className={"flex flex-col mt-2 mb-2"} id={card.id} draggable={true}
                                  onDragStart={this.drag}>
@@ -176,7 +176,7 @@ class Board extends React.Component {
                                      onDragOver={this.allowDrop}>add
                                     {
                                         this.state.tasks.map((task) => {
-                                            if (card.id == task.task_id) {
+                                            if (card.id === task.task_id) {
                                                 return (
                                                     <div key={task.id} className={"bg-blue-700 flex flex-col mt-2 mb-2"} id={task.id} draggable={true}
                                                          onDragStart={this.drag}>
@@ -244,19 +244,6 @@ class Board extends React.Component {
                 <div className={this.state.style}>
                     <List/>
                     <div onClick={()=>this.sprintListDisplay()} className="bg-red-400 w-48 p-1 m-1 text-center rounded-lg border-2 border-black block hover:bg-red-500 active:bg-red-600">Cancel</div>
-
-function Board() {
-    return (
-        <div className={"board"}>
-            <div className={"sprint-nav"}>
-                <div className={"sprint-nav-sprints"}>
-                    <div className={"sprint-nav-sprints-item"}>Warming up</div>
-                    <div className={"sprint-nav-sprints-item"}>Sprint 1</div>
-                    <div className={"sprint-nav-sprints-item"}>Sprint 2</div>
-                    <div className={"sprint-nav-sprints-item"}>Sprint 3</div>
-                    <div className={"sprint-nav-sprints-item"}>Sprint 4</div>
-                    <div className={"sprint-nav-sprints-item"}>Cooling down</div>
-
                 </div>
                 <div className={"sprint-nav"}>
                     <div className={"sprint-nav-sprints"}>
@@ -286,35 +273,29 @@ function Board() {
                                  className={"chart-icon"}/>
                         </div>
                     </div>
-                </div>
-                <div className={"sprint-board"}>
-                    <div className={"card-nav"}>
-                        <ul>
-                            <li className={"sprint-name"}>
-                                <span>Sprint name</span>
-                                <span>sprint_start/end_date</span>
-                            </li>
-                            <li>Assignee</li>
-                            <li>Status</li>
-                            <li>Priority</li>
-                            <li>Est Time</li>
-                            <li>Spent Time</li>
-                            <li>Due Date</li>
-                        </ul>
-                        {/*<div className={"add-card"}>*/}
-                        {/*    <img src="https://img.icons8.com/material-rounded/24/null/filled-plus-2-math.png" alt={"plus icon"}/>*/}
-                        {/*    Add card*/}
-                        {/*</div>*/}
-                        <AddCardButton/>
-                    </div>
-                    <div className={"cards"} id="0" onDrop={this.drop} onDragOver={this.allowDrop}>
-                        {taskDisplay}
-                        {/*<Card/>*/}
-                        {/*<Card/>*/}
-                        {/*<Card/>*/}
-                        {/*<Card/>*/}
-                        {/*<Card/>*/}
-                        {/*<Card/>*/}
+                    <div className={"sprint-board"}>
+                        <div className={"card-nav"}>
+                            <ul>
+                                <li className={"sprint-name"}>
+                                    <span>Sprint name</span>
+                                    <span>sprint_start/end_date</span>
+                                </li>
+                                <li>Assignee</li>
+                                <li>Status</li>
+                                <li>Priority</li>
+                                <li>Est Time</li>
+                                <li>Spent Time</li>
+                                <li>Due Date</li>
+                            </ul>
+                            {/*<div className={"add-card"}>*/}
+                            {/*    <img src="https://img.icons8.com/material-rounded/24/null/filled-plus-2-math.png" alt={"plus icon"}/>*/}
+                            {/*    Add card*/}
+                            {/*</div>*/}
+                            <AddCardButton/>
+                        </div>
+                        <div className={"cards"} id="0" onDrop={this.drop} onDragOver={this.allowDrop}>
+                            {taskDisplay}
+                        </div>
                     </div>
                 </div>
             </div>

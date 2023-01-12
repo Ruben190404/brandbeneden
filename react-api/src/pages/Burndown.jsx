@@ -5,7 +5,7 @@ import Burndown from "../components/burndown";
 
 
 
-function Burndown() {
+function BurndownPage() {
     return (
         <div>
             ffuyf

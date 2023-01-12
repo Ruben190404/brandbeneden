@@ -10,6 +10,7 @@ class TaskAdd extends Component{
         title: 'display U',
         description: 'derp',
         user_id: 1,
+        sprint_id: 1,
         priority: 1,
         status: 1,
         spend_time: 1,
