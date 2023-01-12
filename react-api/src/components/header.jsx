@@ -60,7 +60,7 @@ export default class Header extends React.Component {
                                 <button onClick={this.renderProjectAddForm}>Add</button>
                             </div>
                         </div>
-                        <a href="/Burndown.jsx" className="purple-button">Burn-down</a>
+                        <a href="Burndown" className="purple-button">Burn-down</a>
                     </div>
 
                     <div className="nav-center-items pr-6">
