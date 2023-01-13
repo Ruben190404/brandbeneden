@@ -2,6 +2,10 @@ import axios from "axios";
 import React from "react";
 import CardItem from "./cardItem";
 import {useParams} from "react-router-dom";
+import setConfig from "../adapters/axios"
+
+
+const config = setConfig();
 
 export default class Card extends React.Component {
     constructor(props) {
@@ -25,9 +29,9 @@ export default class Card extends React.Component {
 
     async get() {
         if (window.location.href === "http://localhost:3000/") {
-            const currentSprint = await axios.get(`http://localhost:8000/api/currentsprint`);
+            const currentSprint = await axios.get(`http://localhost:8000/api/currentsprint`, config);
             const currentSprintId = currentSprint.data.currentsprint;
-            const response = await axios.get(`http://localhost:8000/api/sprint/${currentSprintId}`);
+            const response = await axios.get(`http://localhost:8000/api/sprint/${currentSprintId}`, config);
 
             if (response.data.status === true) {
                 this.setState({
@@ -37,7 +41,7 @@ export default class Card extends React.Component {
             }
         } else {
             const id = this.props.path;
-            const response = await axios.get(`http://localhost:8000/api/sprint/${id}`);
+            const response = await axios.get(`http://localhost:8000/api/sprint/${id}`, config);
             // console.log(response.data.tasks);
             if (response.data.status === true) {
                 this.setState({
@@ -49,7 +53,7 @@ export default class Card extends React.Component {
     }
 
     async sprintData() {
-        const response = await axios.get(`http://localhost:8000/api/sprints`);
+        const response = await axios.get(`http://localhost:8000/api/sprints`, config);
         // console.log(response.data.sprints);
         if (response.data.status === true) {
             this.setState({

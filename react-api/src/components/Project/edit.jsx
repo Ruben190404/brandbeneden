@@ -1,6 +1,9 @@
 import '../../styles/main.css';
 import {useState} from "react";
 import axios from "axios";
+import setConfig from "../../adapters/axios"
+
+const config = setConfig();
 
 function Update() {
     const title = document.getElementById('projectUpdateTitle').value;
@@ -12,7 +15,7 @@ function Update() {
         title: title,
         start_date: start_date,
         end_date: end_date,
-    }).then((response) => {
+    }, config).then((response) => {
         window.location.reload();
     }).catch((error) => {
         console.log(error);
@@ -24,7 +27,7 @@ function SoftDelete() {
 
     axios.put(`http://localhost:8000/api/projects/delete/${id}`,{
         soft_delete: new Date().toISOString().slice(0, 19).replace('T', ' ').replace('Z', '')
-    }).then((response) => {
+    }, config).then((response) => {
         window.location.reload();
     }).catch((error) => {
         console.log(error);
@@ -37,7 +40,7 @@ function ProjectEditForm(props) {
     const [end_date, setEnd_date] = useState('');
     const id = props.id;
 
-    axios.get(`http://localhost:8000/api/projects/${id}`).then((response) => {
+    axios.get(`http://localhost:8000/api/projects/${id}`, config).then((response) => {
         let start_date_data = new Date(response.data.project.start_date).toISOString().slice(0, 10);
         let end_date_data = new Date(response.data.project.end_date).toISOString().slice(0, 10);
         setTitle(response.data.project.title);

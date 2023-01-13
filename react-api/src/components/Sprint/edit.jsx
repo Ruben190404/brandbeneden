@@ -75,7 +75,7 @@ class SprintEditForm extends Component {
         console.log(result)
 
         if (window.confirm("You Sure") === true) {
-            axios.put(`http://127.0.0.1:8000/api/delete-sprint/${result}`, config,{soft_delete: new Date().toISOString().slice(0, 19).replace('T', ' ').replace('Z', '')});
+            axios.put(`http://127.0.0.1:8000/api/delete-sprint/${result}`,{soft_delete: new Date().toISOString().slice(0, 19).replace('T', ' ').replace('Z', '')}, config);
             alert("It is Deleted");
         } else {
             alert("Not Deleted");

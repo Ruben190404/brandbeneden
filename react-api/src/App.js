@@ -28,7 +28,7 @@ function App() {
             <Routes>
                 {/*<ProtectedRoute>*/}
                     <Route path={"/"}>
-                        <Route index path=":id" element={<Home />}/>
+                        <Route index element={<Home />}/>
                         <Route path={"/Burndown"}  element={<Burndown />}/>
                         <Route path={"/sprint-edit/:id"} element={<SprintEditForm />}/>
                     </Route>
