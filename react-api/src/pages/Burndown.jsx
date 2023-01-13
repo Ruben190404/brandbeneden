@@ -1,16 +1,13 @@
 import Header from "../components/header";
-import React from 'react';
-import Burndown from "../components/burndown";
+import SprintBurndown from "../components/SprintBurndown";
 
-
-
-
-function BurndownPage() {
+function Burndownpage() {
     return (
         <div>
-            ffuyf
+            <Header />
+            <SprintBurndown/>
         </div>
     )
 }
 
-export default Burndown
+export default Burndownpage

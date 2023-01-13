@@ -1,5 +1,6 @@
 import Home from "./pages/Home";
 import TokenStorage from "./pages/TokenStorage";
+import ShowSprints from "./components/Sprint/show";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import {useContext, useState} from "react";
 import Burndown from "./pages/Burndown";
@@ -27,12 +28,7 @@ function App() {
             <Routes>
                 {/*<ProtectedRoute>*/}
                     <Route path={"/"}>
-                        <Route
-                            index
-                            element={
-                                <Home />
-                            }
-                        />
+                        <Route index path=":id" element={<Home />}/>
                         <Route path={"/Burndown"}  element={<Burndown />}/>
                         <Route path={"/sprint-edit/:id"} element={<SprintEditForm />}/>
                     </Route>
