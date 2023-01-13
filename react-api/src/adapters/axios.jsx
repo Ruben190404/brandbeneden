@@ -1,13 +1,12 @@
 
+
 export default function setConfig() {
-    const windowUrl = window.location.search;
-    const params = new URLSearchParams(windowUrl);
+    const token = localStorage.getItem('token');
     const config = {
-        headers: { Authorization: `Bearer ${params.get('b')}` }
+        headers: { Authorization: token }
     };
 
     return (
         config
     )
 }
-

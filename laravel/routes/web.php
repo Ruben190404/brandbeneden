@@ -18,3 +18,4 @@ Route::get('/login/azure', [\App\Http\Controllers\Auth\LoginController::class, '
 Route::get('/callback',[\App\Http\Controllers\Auth\LoginController::class, 'handleProviderCallback']);
 
 Route::get('/logout',[\App\Http\Controllers\Auth\LoginController::class, 'logout']);
+

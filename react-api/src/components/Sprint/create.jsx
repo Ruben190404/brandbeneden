@@ -27,7 +27,7 @@ class SprintForm extends Component {
     saveSprint = async (e) => {
         e.preventDefault();
 
-        const response = await axios.post('http://127.0.0.1:8000/api/add-sprint', this.state)
+        const response = await axios.post('http://127.0.0.1:8000/api/add-sprint', this.state, config)
             .then((response) => {
                 window.location.reload();
             })

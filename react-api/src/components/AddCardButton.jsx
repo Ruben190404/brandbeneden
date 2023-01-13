@@ -39,7 +39,7 @@ export default class TaskAdd extends React.Component {
     }
 
     async setCurrentSprint() {
-        await axios.get(`http://localhost:8000/api/currentsprint`).then((res) => {
+        await axios.get(`http://localhost:8000/api/currentsprint`, config).then((res) => {
             const currentSprintId = res.data.currentsprint;
             if (res.data.status === true && window.location.href === "http://localhost:3000/") {
                 this.state.sprint_id = currentSprintId;
@@ -54,7 +54,7 @@ export default class TaskAdd extends React.Component {
     saveTask = async (e) => {
         e.preventDefault();
         await this.setCurrentSprint().then( async () => {
-            const response = await axios.post('http://127.0.0.1:8000/api/add-task', this.state)
+            const response = await axios.post('http://127.0.0.1:8000/api/add-task', this.state, config)
             if (response.data.status === true) {
                 window.location.reload();
             }

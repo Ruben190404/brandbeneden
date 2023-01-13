@@ -3,6 +3,9 @@ import axios from "axios";
 import React, {useState, useEffect, createRef} from "react";
 import {Multiselect} from "multiselect-react-dropdown";
 import {useParams} from "react-router-dom";
+import setConfig from "../../adapters/axios"
+
+const config = setConfig();
 
 export default class Create extends React.Component {
 
@@ -27,7 +30,7 @@ export default class Create extends React.Component {
             start_date: start_date,
             end_date: end_date,
 
-        }).then((response) => {
+        }, config).then((response) => {
             // window.location.reload();
             console.log(users);
             console.log(this.multiselectRef.current.getSelectedItems());
@@ -50,7 +53,7 @@ export default class Create extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:8000/api/users`).then(res => {
+        axios.get(`http://localhost:8000/api/users`, config).then(res => {
             const users = res.data;
             // this.setState([users]);
             this.state.users = users;

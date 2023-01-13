@@ -7,6 +7,10 @@ import ProjectAddForm from "./Project/create";
 import ShowSprints from "./Sprint/show";
 import {Routes, Route, useParams} from "react-router-dom";
 import SprintForm from "./Sprint/create";
+import setConfig from "../adapters/axios"
+
+
+const config = setConfig();
 
 function renderSprintForm() {
     document.getElementById('sprint-add-form').style.display = "block";
@@ -32,9 +36,9 @@ function Board() {
     let { id } = useParams();
 
     if(window.location.href === "http://localhost:3000/") {
-        axios.get(`http://localhost:8000/api/currentsprint`).then(res => {
+        axios.get(`http://localhost:8000/api/currentsprint`, config).then(res => {
             const currentSprint = res.data.currentsprint;
-            axios.get(`http://localhost:8000/api/sprintData/${currentSprint}`).then(res => {
+            axios.get(`http://localhost:8000/api/sprintData/${currentSprint}`, config).then(res => {
                 let start_date_data = new Date(res.data.sprint.start_date).toUTCString().slice(5, 16);
                 let end_date_data = new Date(res.data.sprint.end_date).toUTCString().slice(5, 16);
                 setStart(start_date_data);
@@ -42,7 +46,7 @@ function Board() {
             })
         })
     } else {
-        axios.get(`http://localhost:8000/api/sprintData/${id}`).then(res => {
+        axios.get(`http://localhost:8000/api/sprintData/${id}`, config).then(res => {
             let start_date_data = new Date(res.data.sprint.start_date).toUTCString().slice(5, 16);
             let end_date_data = new Date(res.data.sprint.end_date).toUTCString().slice(5, 16);
             setStart(start_date_data);

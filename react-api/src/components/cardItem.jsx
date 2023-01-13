@@ -1,6 +1,10 @@
 import axios from "axios";
 import React from "react";
 import {useParams} from "react-router-dom";
+import setConfig from "../adapters/axios"
+
+
+const config = setConfig();
 
 export default class CardItem extends React.Component {
 
@@ -11,7 +15,7 @@ export default class CardItem extends React.Component {
         result[e.target.name] = e.target.value;
 
         clearTimeout(this.timeout[id]);
-        this.timeout[id] = setTimeout(() => axios.put(`http://127.0.0.1:8000/api/update-task/${result.id}`, result), 1000)
+        this.timeout[id] = setTimeout(() => axios.put(`http://127.0.0.1:8000/api/update-task/${result.id}`, config, result), 1000)
 
         if (e.target.name === "sprint_id") {
             setTimeout(window.location.reload(), 50);
@@ -25,14 +29,14 @@ export default class CardItem extends React.Component {
             return obj.id === task_id;
         });
 
-        const response = await axios.put(`http://127.0.0.1:8000/api/update-task/${task_id}`, don);
+        const response = await axios.put(`http://127.0.0.1:8000/api/update-task/${task_id}`, config, don);
     }
 
     SoftDelete(id) {
         var result = this.props.state.tasks.find(item => item.id === id);
 
         if (window.confirm("You Sure") === true) {
-            axios.put(`http://127.0.0.1:8000/api/delete-task/${result.id}`, {soft_delete: new Date().toISOString().slice(0, 19).replace('T', ' ').replace('Z', '')});
+            axios.put(`http://127.0.0.1:8000/api/delete-task/${result.id}`, {soft_delete: new Date().toISOString().slice(0, 19).replace('T', ' ').replace('Z', '')}, config);
             document.getElementById(id).remove();
             alert("It is Deleted");
         } else {
@@ -65,7 +69,7 @@ export default class CardItem extends React.Component {
         console.log(result.id);
         // timer stuff
         clearTimeout(this.timeout[id]);
-        this.timeout[id] = setTimeout(() => axios.put(`http://127.0.0.1:8000/api/update-task/${result.id}`, result).then(() => window.location.reload()), 500)
+        this.timeout[id] = setTimeout(() => axios.put(`http://127.0.0.1:8000/api/update-task/${result.id}`, config, result).then(() => window.location.reload()), 500)
 
     }
 
