@@ -1,5 +1,5 @@
 import Home from "./pages/Home";
-
+import TokenStorage from "./pages/TokenStorage";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import {useContext, useState} from "react";
 import Burndown from "./pages/Burndown";
@@ -9,6 +9,8 @@ import SprintEditForm from "./components/Sprint/edit";
 
 
 function App() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('b');
     // const { currentUser  } = useContext();
     // const [currentUser, setCurrentUser] = useState(null);
     //
@@ -23,18 +25,19 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path={"/"}>
-                    <Route
-                        index
-                        element={
-                            // <ProtectedRoute>
+                {/*<ProtectedRoute>*/}
+                    <Route path={"/"}>
+                        <Route
+                            index
+                            element={
                                 <Home />
-                            // </ProtectedRoute>
-                        }
-                    />
-                    <Route path={"/Burndown"}  element={<Burndown />}/>
-                    <Route path={"/sprint-edit/:id"} element={<SprintEditForm />}/>
-                </Route>
+                            }
+                        />
+                        <Route path={"/Burndown"}  element={<Burndown />}/>
+                        <Route path={"/sprint-edit/:id"} element={<SprintEditForm />}/>
+                    </Route>
+                    <Route path={"/token_storage" + token}  element={<TokenStorage />}/>
+                {/*</ProtectedRoute>*/}
             </Routes>
         </BrowserRouter>
     );
