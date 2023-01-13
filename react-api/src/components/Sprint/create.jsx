@@ -1,9 +1,12 @@
 import '../../styles/main.css';
-
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
-
 import axios from "axios";
+import setConfig from "../../adapters/axios"
+
+const config = setConfig();
+
+// TODO: Fix Cancel Button to Cancel
 
 class SprintForm extends Component {
 
@@ -28,20 +31,6 @@ class SprintForm extends Component {
             .then((response) => {
                 window.location.reload();
             })
-
-        // if (response.data.status === true) {
-        //
-        //     console.log(response.data.message);
-        //
-        //     this.setState({
-        //         title: '',
-        //         goal: '',
-        //         start_date: '',
-        //         end_date: '',
-        //         project_id: '',
-        //     })
-        //
-        // }
     }
 
     cancel() {
