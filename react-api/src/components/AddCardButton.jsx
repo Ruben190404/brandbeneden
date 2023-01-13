@@ -16,7 +16,7 @@ export default class TaskAdd extends React.Component {
             spend_time: 1,
             estimated_time: 1,
             sprint_id: '',
-            task_id: 1,
+            task_id: 0,
         }
     }
 

@@ -12,6 +12,19 @@ function renderSprintForm() {
     document.getElementById('sprint-add-form').style.display = "block";
 }
 
+function SprintListDisplay(e) {
+    const [style, setStyle] = useState("hidden");
+
+
+    if (this.state.style === "hidden") {
+        this.setState({style: "show"})
+        console.log(this.state.style)
+    } else {
+        this.setState({style: "hidden"})
+        console.log(this.state.style)
+    }
+}
+
 function Board() {
     const [start, setStart] = useState();
     const [end, setEnd] = useState();
@@ -50,7 +63,7 @@ function Board() {
                         </svg>
                         Add new sprint
                     </button>
-                    <div className={"sprint-nav-item"}>
+                    <div className={"sprint-nav-item"} onClick={()=>SprintListDisplay()}>
                         <img src="https://img.icons8.com/ios/50/null/engineering.png" alt={"Gear icon"}
                              className={"gear-icon"}/>
                         <span>Edit sprint</span>
