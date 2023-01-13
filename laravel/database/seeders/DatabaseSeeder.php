@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         \App\Models\User::factory(30)->create();
+//         \App\Models\User::factory(30)->create();
 
         // TODO: remove when finished
 
@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
             DB::table('users')->insert([
                 'name' => Str::random(10).$i,
                 'email' => Str::random(10).'@gmail.com',
-                'password' => Hash::make('password'),
+//                'password' => Hash::make('password'),
                 'is_admin' => $admin,
             ]);
         }
