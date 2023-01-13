@@ -21,7 +21,7 @@ export default class TaskAdd extends React.Component {
         e.preventDefault();
 
         const response = await axios.post('http://127.0.0.1:8000/api/add-task', this.state, config)
-
+    }
     constructor(props) {
         super(props);
 
