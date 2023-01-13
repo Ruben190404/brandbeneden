@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+         \App\Models\User::factory(30)->create();
+
         // TODO: remove when finished
 
         $categories = ["Heren", "Dames", "Accessoires"];
