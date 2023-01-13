@@ -30,7 +30,7 @@
 
 .sprint-nav {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     margin-bottom: 40px;
 }
 
@@ -109,4 +109,20 @@
     @apply
     flex
     flex-col
+}
+
+.show {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    position: fixed;
+    z-index: 1;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,.2);
+    flex-direction: column;
+}
+
+.hidden {
+    display: none;
 }

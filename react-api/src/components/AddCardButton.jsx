@@ -1,8 +1,26 @@
 import React from "react";
 import axios from "axios";
+import setConfig from "../adapters/axios"
+
+const config = setConfig();
 
 
 export default class TaskAdd extends React.Component {
+    state = {
+        title: 'display U',
+        description: 'derp',
+        user_id: 1,
+        priority: 1,
+        status: 1,
+        spend_time: 1,
+        estimated_time: 1,
+        task_id: 0,
+    }
+
+    saveTask = async (e) => {
+        e.preventDefault();
+
+        const response = await axios.post('http://127.0.0.1:8000/api/add-task', this.state, config)
 
     constructor(props) {
         super(props);

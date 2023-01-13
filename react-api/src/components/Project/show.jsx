@@ -1,7 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import ProjectEditForm from "./edit";
+import setConfig from "../../adapters/axios"
 
+const config = setConfig();
 
 export default class Projects extends React.Component {
 
@@ -19,7 +21,7 @@ export default class Projects extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:8000/api/projects`)
+        axios.get(`http://localhost:8000/api/projects`, config)
             .then(res => {
                 const projects = res.data;
                 this.setState({projects});
