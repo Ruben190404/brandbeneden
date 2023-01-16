@@ -13,7 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Route::get('/', function () {
+    return redirect(route('login.azure'));
+});
+Route::get('/login', function () {
+    return redirect(route('login.azure'));
+})->name('login');
 Route::get('/login/azure', [\App\Http\Controllers\Auth\LoginController::class, 'redirectToProvider'])->name('login.azure');
 Route::get('/callback',[\App\Http\Controllers\Auth\LoginController::class, 'handleProviderCallback']);
 

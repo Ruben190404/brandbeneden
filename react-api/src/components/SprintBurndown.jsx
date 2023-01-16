@@ -12,7 +12,10 @@ import {
 } from 'chart.js';
 import {Line} from 'react-chartjs-2';
 import axios from "axios";
-import setConfig from "../adapters/axios"
+import {
+    default as setConfig,
+    apiUrl,
+} from "../adapters/axios"
 
 
 const config = setConfig();
@@ -50,7 +53,7 @@ function SprintBurndown(props) {
     };
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/tasks/1', config).then((response) => {
+        axios.get(apiUrl+'/api/tasks/1', config).then((response) => {
 
             // Default state for empty chart
             let start = 0;

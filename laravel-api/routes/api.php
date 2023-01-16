@@ -44,6 +44,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
   Route::put('/projects/update/{project}', [\App\Http\Controllers\ProjectController::class, 'update']);
   Route::put('/projects/delete/{project}', [\App\Http\Controllers\ProjectController::class, 'delete']);
 
+
   //User Routes
   Route::get('/users', [\App\Http\Controllers\UserController::class, 'index']);
 });
