@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Sprint;
 use App\Models\Task;
-use App\Models\Sprint;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
