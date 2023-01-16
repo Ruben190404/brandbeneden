@@ -1,0 +1,128 @@
+.sprint-board {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.card-nav ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+}
+
+.card-nav ul li:not(:first-child):before {
+    content: "|";
+    @apply mx-8;
+}
+
+.sprint-name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sprint-nav {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
+.sprint-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    @apply mr-4;
+}
+
+.sprint-nav-items-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.sprint-nav-sprints {
+    display: flex;
+    width: 50%;
+}
+
+.sprint-nav-sprints-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(169, 168, 168, 0.14);
+    box-shadow: 0 1px 4px 0 rgb(0 0 50 / 30%);;
+    border: 1px solid rgba(85, 85, 85, 0.51);
+    border-radius: 0 0 20px 20px;
+    cursor: pointer;
+    @apply px-4
+}
+
+.add-card {
+    background-color: #f6aee6;
+    border: 1px solid #808080;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(9, 30, 66, 0.25);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    margin-left: 50px;
+    max-width: 300px;
+    min-height: 20px;
+    padding: 6px 12px;
+    position: relative;
+    text-decoration: none;
+    vertical-align: top;
+    white-space: nowrap;
+}
+
+.gear-icon {
+    width: 30px;
+}
+
+.chart-icon {
+    width: 30px;
+}
+
+.chart-icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(144, 15, 15, 0.62);
+    border: 1px solid grey;
+    border-radius: 5px;
+    cursor: pointer;
+    @apply py-1 px-6;
+}
+
+.cards {
+    @apply
+    flex
+    flex-col
+}
+
+.show {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    position: fixed;
+    z-index: 1;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,.2);
+    flex-direction: column;
+}
+
+.hidden {
+    display: none;
+}
