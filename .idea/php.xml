@@ -120,6 +120,10 @@
       <path value="$PROJECT_DIR$/laravel/vendor/tijsverkoyen/css-to-inline-styles" />
       <path value="$PROJECT_DIR$/laravel/vendor/nunomaduro/collision" />
       <path value="$PROJECT_DIR$/laravel/vendor/composer" />
+      <path value="$PROJECT_DIR$/laravel/vendor/socialiteproviders/manager" />
+      <path value="$PROJECT_DIR$/laravel/vendor/socialiteproviders/microsoft-azure" />
+      <path value="$PROJECT_DIR$/laravel/vendor/league/oauth1-client" />
+      <path value="$PROJECT_DIR$/laravel/vendor/laravel/socialite" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />

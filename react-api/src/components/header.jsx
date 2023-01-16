@@ -65,7 +65,7 @@ export default class Header extends React.Component {
                             </div>
                         </div>
                         <div id="project-edit-form" style={{display: "none"}}><ProjectEditForm id={this.state.projectId}/></div>
-                        <a href="/burndown" className="purple-button">Burn-down</a>
+                        <a href="/Burndown" className="purple-button">Burn-down</a>
                     </div>
 
                     <div className="nav-center-items pr-6">

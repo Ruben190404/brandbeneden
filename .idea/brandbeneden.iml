@@ -117,6 +117,10 @@
       <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/tijsverkoyen/css-to-inline-styles" />
       <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/nunomaduro/collision" />
       <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/socialiteproviders/manager" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/socialiteproviders/microsoft-azure" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/league/oauth1-client" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/laravel/socialite" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
