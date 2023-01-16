@@ -118,12 +118,11 @@ export default class CardItem extends React.Component {
                                 </div>
                                 <div className="table-cell">
                                     <select name="sprint_id" id="sprint_id" data-id={card.id}
-                                            onChange={this.handleInput}>
+                                            onChange={this.handleInput} defaultValue={card.sprint_id}>
                                         {
                                             this.props.state.sprints ?
                                                 this.props.state.sprints.map(sprint =>
-                                                    <option key={sprint.id} defaultValue={sprint.id}
-                                                            selected={sprint.id === card.sprint_id ? "selected" : null}>
+                                                    <option key={sprint.id} value={sprint.id}>
                                                         {sprint.title}
                                                     </option>
                                                 ) : ""

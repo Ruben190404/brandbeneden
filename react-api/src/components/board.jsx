@@ -34,11 +34,13 @@ function Board() {
     const [end, setEnd] = useState();
 
     let { id } = useParams();
-
-    if(window.location.href === "http://localhost:3000/") {
+    console.log(window.location.pathname)
+    if(window.location.pathname === "/") {
         axios.get(`http://localhost:8000/api/currentsprint`, config).then(res => {
             const currentSprint = res.data.currentsprint;
+            console.log(currentSprint)
             axios.get(`http://localhost:8000/api/sprintData/${currentSprint}`, config).then(res => {
+                console.log(res.data);
                 let start_date_data = new Date(res.data.sprint.start_date).toUTCString().slice(5, 16);
                 let end_date_data = new Date(res.data.sprint.end_date).toUTCString().slice(5, 16);
                 setStart(start_date_data);
@@ -47,6 +49,7 @@ function Board() {
         })
     } else {
         axios.get(`http://localhost:8000/api/sprintData/${id}`, config).then(res => {
+            console.log(res.data)
             let start_date_data = new Date(res.data.sprint.start_date).toUTCString().slice(5, 16);
             let end_date_data = new Date(res.data.sprint.end_date).toUTCString().slice(5, 16);
             setStart(start_date_data);

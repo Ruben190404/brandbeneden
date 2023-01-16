@@ -41,7 +41,7 @@ export default class TaskAdd extends React.Component {
     async setCurrentSprint() {
         await axios.get(`http://localhost:8000/api/currentsprint`, config).then((res) => {
             const currentSprintId = res.data.currentsprint;
-            if (res.data.status === true && window.location.href === "http://localhost:3000/") {
+            if (res.data.status === true && window.location.pathname === "/") {
                 this.state.sprint_id = currentSprintId;
             } else {
                 this.state.sprint_id = this.props.path;

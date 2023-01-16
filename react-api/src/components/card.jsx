@@ -28,7 +28,7 @@ export default class Card extends React.Component {
     }
 
     async get() {
-        if (window.location.href === "http://localhost:3000/") {
+        if (window.location.pathname === "/") {
             const currentSprint = await axios.get(`http://localhost:8000/api/currentsprint`, config);
             const currentSprintId = currentSprint.data.currentsprint;
             const response = await axios.get(`http://localhost:8000/api/sprint/${currentSprintId}`, config);

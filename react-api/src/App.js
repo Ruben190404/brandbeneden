@@ -12,6 +12,7 @@ import SprintEditForm from "./components/Sprint/edit";
 function App() {
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('b');
+    localStorage.setItem('token', token);
     // const { currentUser  } = useContext();
     // const [currentUser, setCurrentUser] = useState(null);
     //
