@@ -11,7 +11,7 @@ class SprintController extends Controller
     public function index()
     {
         $sprints = Sprint::orderby('start_date', 'asc')->get();
-        
+
         return response()->json([
             'status' => true,
             'sprints' => $sprints
@@ -20,7 +20,7 @@ class SprintController extends Controller
 
     public function store(Request $request)
     {
-    
+
     //        $validated = $request->validate([
     //            'title' => 'required|min:1',
     //            'goal' => 'required|min:1',
@@ -28,7 +28,7 @@ class SprintController extends Controller
     //            'end_date' => 'required|date',
     //            'project_id' => 'required|min:1',
     //        ]);
-    
+
         $sprint = new Sprint();
         $sprint->title = $request->input('title');
         $sprint->goal = $request->input('goal');
@@ -48,7 +48,7 @@ class SprintController extends Controller
         $sprints = Sprint::all();
         $currentsprint = 0;
         foreach ($sprints as $sprint) {
-            if ($sprint->start_date < now() && $sprint->end_date > now()) {
+            if ($sprint->start_date <= now() && $sprint->end_date >= now()) {
                 $currentsprint = $sprint->id;
             }
         }

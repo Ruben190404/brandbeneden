@@ -15,28 +15,41 @@ export default class Create extends React.Component {
         this.multiselectRef = createRef();
 
         this.state = {
-            users: []
+            users: [],
+            selectedUsers: []
         }
     }
 
     create() {
+        // console.log(this.multiselectRef.current.getSelectedItems());
         const title = document.getElementById('projectTitle').value;
         const users = this.multiselectRef.current.getSelectedItems();
         const start_date = document.getElementById('project_start_date').value;
         const end_date = document.getElementById('project_end_date').value;
-
         axios.post("http://localhost:8000/api/projects/store", {
             title: title,
             start_date: start_date,
             end_date: end_date,
 
         }, config).then((response) => {
-            // window.location.reload();
-            console.log(users);
+            window.location.reload();
+            // console.log(users);
             console.log(this.multiselectRef.current.getSelectedItems());
         }).catch((error) => {
             console.log(error);
         })
+    }
+
+    onSelect(selectedList) {
+        console.log(selectedList);
+        const selectedUsers = selectedList;
+        this.state.selectedUsers = ([selectedUsers]);
+        // this.state.selectedUsers = selectedUsers;
+        // console.log(this.state.selectedUsers);
+    }
+
+    onRemove(selectedList, removedItem) {
+
     }
 
     cancel() {
@@ -57,6 +70,7 @@ export default class Create extends React.Component {
             const users = res.data;
             // this.setState([users]);
             this.state.users = users;
+            console.log(this.state);
         })
     }
 
@@ -72,6 +86,8 @@ export default class Create extends React.Component {
                         displayValue="name"
                         placeholder={"Select Users"}
                         ref={this.multiselectRef}
+                        selectionLimit={10}
+                        onSelect={this.onSelect}
                         className="bg-violet-300 rounded-lg border-2 border-black w-52"
                         id="projectUsers"
                     />
