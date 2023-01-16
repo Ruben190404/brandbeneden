@@ -54,6 +54,10 @@ class TaskController extends Controller
 
     public function delete(Task $task, Request $request)
     {
+        $zero = [
+            'task_id' => 0
+        ];
+        Task::where('task_id', '=', $task->id)->update($zero);
         $task->deleted_at = $request->input('soft_delete');
 
         $task->save();
