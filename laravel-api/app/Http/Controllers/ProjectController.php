@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -38,16 +39,22 @@ class ProjectController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'title' => 'required | min:3',
-            'start_date' => 'required | date',
-            'end_date' => 'required | date | after:start_date',
-        ]);
+//        $validated = $request->validate([
+//            'title' => 'required | min:3',
+//            'start_date' => 'required | date',
+//            'end_date' => 'required | date | after:start_date',
+//        ]);
 
         $project = new Project();
         $project->title = $request->title;
         $project->start_date = $request->start_date;
         $project->end_date = $request->end_date;
+
+        $project->save();
+
+        $project = Project::find($project->id);
+        $project->users()->sync($request->users);
+
         $project->save();
     }
 

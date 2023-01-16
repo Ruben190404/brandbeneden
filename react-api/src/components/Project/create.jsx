@@ -20,39 +20,35 @@ export default class Create extends React.Component {
         }
     }
 
-    create() {
+    create = () => {
         // console.log(this.multiselectRef.current.getSelectedItems());
         const title = document.getElementById('projectTitle').value;
-        const users = this.multiselectRef.current.getSelectedItems();
+        const users = this.state.selectedUsers;
         const start_date = document.getElementById('project_start_date').value;
         const end_date = document.getElementById('project_end_date').value;
         axios.post("http://localhost:8000/api/projects/store", {
             title: title,
             start_date: start_date,
             end_date: end_date,
-
+            users: users
         }, config).then((response) => {
             window.location.reload();
             // console.log(users);
-            console.log(this.multiselectRef.current.getSelectedItems());
         }).catch((error) => {
             console.log(error);
         })
     }
 
-    onSelect(selectedList) {
-        console.log(selectedList);
-        const selectedUsers = selectedList;
-        this.state.selectedUsers = ([selectedUsers]);
-        // this.state.selectedUsers = selectedUsers;
-        // console.log(this.state.selectedUsers);
+    onSelect = (selectedList) => {
+        console.log(this.multiselectRef.current.getSelectedItems());
+        const selectedUsers = selectedList.map((user) => {
+            return user.id;
+        });
+        this.state.selectedUsers = selectedUsers;
+        console.log(this.state.selectedUsers);
     }
 
-    onRemove(selectedList, removedItem) {
-
-    }
-
-    cancel() {
+    cancel = () => {
         document.getElementById("project-add-form").style.display = "none";
         const title = document.getElementById('projectTitle');
         const start_date = document.getElementById('project_start_date');
@@ -70,7 +66,7 @@ export default class Create extends React.Component {
             const users = res.data;
             // this.setState([users]);
             this.state.users = users;
-            console.log(this.state);
+            // console.log(this.state.users.users);
         })
     }
 
