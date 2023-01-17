@@ -48,6 +48,7 @@ function App() {
                 {/*<ProtectedRoute>*/}
                     <Route path={"/"}>
                         <Route index element={<Home />}/>
+                        <Route path=":id" element={<Home />}/>
                         <Route path={"/Burndown"}  element={<Burndown />}/>
                         <Route path={"/sprint-edit/:id"} element={<SprintEditForm />}/>
                     </Route>
