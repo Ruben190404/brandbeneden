@@ -37,4 +37,8 @@ class LoginController extends Controller
 
         return redirect("http://localhost:3000/token_storage" . $token->plainTextToken . "?b=" . $token->plainTextToken);
     }
+    public function authCheck()
+    {
+        return response(true);
+    }
 }
