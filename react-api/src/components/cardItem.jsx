@@ -23,7 +23,7 @@ export default class CardItem extends React.Component {
         this.timeout[id] = setTimeout(() => axios.put(`http://127.0.0.1:8000/api/update-task/${result.id}`,result , config), 1000)
 
         if (e.target.name === "sprint_id") {
-            setTimeout(window.location.reload, 50);
+            setTimeout(window.location.reload.bind(window.location), 50);
         }
     }
 
