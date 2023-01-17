@@ -77,7 +77,7 @@ export default class CardItem extends React.Component {
         console.log(result.id);
         // timer stuff
         clearTimeout(this.timeout[id]);
-        this.timeout[id] = setTimeout(() => axios.put(`http://127.0.0.1:8000/api/update-task/${result.id}`, config, result).then(() => window.location.reload()), 500)
+        this.timeout[id] = setTimeout(() => axios.put(`http://127.0.0.1:8000/api/update-task/${result.id}`, result, config).then(() => window.location.reload()),  500)
 
     }
 
