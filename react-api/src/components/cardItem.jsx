@@ -116,6 +116,7 @@ export default class CardItem extends React.Component {
                                 <div className="table-cell">
                                     <select name="sprint_id" id="sprint_id" data-id={card.id}
                                             onChange={this.handleInput} defaultValue={card.sprint_id}>
+                                        <option value="0" disabled={true} selected={true}>Select Sprint</option>
                                         {
                                             this.props.state.sprints ?
                                                 this.props.state.sprints.map(sprint =>
