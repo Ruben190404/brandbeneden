@@ -22,8 +22,6 @@ class UserSeeder extends Seeder
     {
         // TODO: remove when finished
 
-        $categories = ["Heren", "Dames", "Accessoires"];
-
         for ($i = 0; $i < 50; $i++) {
 
             $admin = false;

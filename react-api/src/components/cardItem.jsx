@@ -8,17 +8,22 @@ const config = setConfig();
 
 export default class CardItem extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        this.timeout = [];
+    }
+
     handleInput = async (e) => {
         let id = parseInt(e.target.getAttribute('data-id'));
         var result = this.props.state.tasks.find(item => item.id === id);
 
         result[e.target.name] = e.target.value;
-
         clearTimeout(this.timeout[id]);
-        this.timeout[id] = setTimeout(() => axios.put(`http://127.0.0.1:8000/api/update-task/${result.id}`, config, result), 50)
+        this.timeout[id] = setTimeout(() => axios.put(`http://127.0.0.1:8000/api/update-task/${result.id}`,result , config), 50)
 
         if (e.target.name === "sprint_id") {
-            setTimeout(window.location.reload(), 50);
+            setTimeout(window.location.reload, 50);
         }
     }
 
@@ -29,7 +34,9 @@ export default class CardItem extends React.Component {
             return obj.id === task_id;
         });
 
-        const response = await axios.put(`http://127.0.0.1:8000/api/update-task/${task_id}`, config, don);
+        await axios.put(`http://127.0.0.1:8000/api/update-task/${task_id}`, don, config);
+
+    //  const response = await axios.put(`http://127.0.0.1:8000/api/update-task/${task_id}`, config, don);
     }
 
     SoftDelete(id) {
@@ -39,6 +46,7 @@ export default class CardItem extends React.Component {
             axios.put(`http://127.0.0.1:8000/api/delete-task/${result.id}`, {soft_delete: new Date().toISOString().slice(0, 19).replace('T', ' ').replace('Z', '')}, config);
             document.getElementById(id).remove();
             alert("It is Deleted");
+            setTimeout(window.location.reload.bind(window.location), 100);
         } else {
             alert("Not Deleted");
         }
