@@ -19,8 +19,8 @@ class SprintFactory extends Factory
     {
         return [
             // fill field for sprint table model
-            'title' => $this->faker->name(),
-            'goal' => $this->faker->word(),
+            'title' => $this->faker->word(),
+            'goal' => $this->faker->text(30),
             'start_date' => $this->faker->dateTimeBetween('-1 day', 'now'),
             'end_date' => $this->faker->dateTimeBetween('now', '+2 weeks'),
             'project_id' => $this->faker->randomElement(Project::all()->pluck('id')->toArray()),
