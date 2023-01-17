@@ -10,5 +10,3 @@ export default function setConfig() {
         config
     )
 }
-
-export const apiUrl = "https://laravel-api.test"

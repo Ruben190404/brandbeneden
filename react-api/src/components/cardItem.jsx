@@ -20,24 +20,13 @@ export default class CardItem extends React.Component {
 
         result[e.target.name] = e.target.value;
         clearTimeout(this.timeout[id]);
-        this.timeout[id] = setTimeout(() => axios.put(`http://127.0.0.1:8000/api/update-task/${result.id}`,result , config), 50)
+        this.timeout[id] = setTimeout(() => axios.put(`http://127.0.0.1:8000/api/update-task/${result.id}`,result , config), 1000)
 
         if (e.target.name === "sprint_id") {
             setTimeout(window.location.reload, 50);
         }
     }
 
-    updateTask = async (id) => {
-        const task_id = id;
-
-        const don = this.props.state.tasks.find(obj => {
-            return obj.id === task_id;
-        });
-
-        await axios.put(`http://127.0.0.1:8000/api/update-task/${task_id}`, don, config);
-
-    //  const response = await axios.put(`http://127.0.0.1:8000/api/update-task/${task_id}`, config, don);
-    }
 
     SoftDelete(id) {
         var result = this.props.state.tasks.find(item => item.id === id);
@@ -89,7 +78,7 @@ export default class CardItem extends React.Component {
 
         return (
                         <div>
-                            <div key={card.id} id={card.id} className="card" onChange={() => this.updateTask(card.id)}
+                            <div key={card.id} id={card.id} className="card"
                                  draggable={true}
                                  onDragStart={this.drag}>
                                 <div>

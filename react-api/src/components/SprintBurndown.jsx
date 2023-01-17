@@ -14,7 +14,6 @@ import {Line} from 'react-chartjs-2';
 import axios from "axios";
 import {
     default as setConfig,
-    apiUrl,
 } from "../adapters/axios"
 
 
@@ -53,7 +52,7 @@ function SprintBurndown(props) {
     };
 
     useEffect(() => {
-        axios.get(apiUrl+'/api/tasks/1', config).then((response) => {
+        axios.get('/api/tasks/1', config).then((response) => {
 
             // Default state for empty chart
             let start = 0;
