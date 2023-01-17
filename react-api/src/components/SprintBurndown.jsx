@@ -53,7 +53,7 @@ function SprintBurndown(props) {
     };
 
     useEffect(() => {
-        axios.get('/api/tasks/1', config).then((response) => {
+        axios.get(apiUrl+'/api/tasks/1', config).then((response) => {
 
             // Default state for empty chart
             let start = 0;

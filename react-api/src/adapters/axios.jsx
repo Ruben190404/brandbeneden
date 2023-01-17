@@ -15,6 +15,7 @@ export default function setConfig() {
 export const apiUrl = "https://laravel-api.test"
 
 export function errorHandler(e){
+    console.log(e);
     if (e === 401){
         window.location.href = apiUrl + '/login/azure'
         return false
