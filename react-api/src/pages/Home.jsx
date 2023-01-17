@@ -5,9 +5,6 @@ import List from "../components/Sprint/list";
 
 
 function Home() {
-    const handleLogin = () => {
-        return window.location.href = 'https://laravel-api.test/login/azure';
-    }
     
     let { id } = useParams();
     
@@ -15,7 +12,6 @@ function Home() {
         <div>
             <Header />
             <Board path={id}/>
-            <button onClick={handleLogin}>login</button>
         </div>
     )
 }

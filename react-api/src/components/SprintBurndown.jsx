@@ -14,6 +14,7 @@ import {Line} from 'react-chartjs-2';
 import axios from "axios";
 import {
     default as setConfig,
+    apiUrl,
 } from "../adapters/axios"
 
 
