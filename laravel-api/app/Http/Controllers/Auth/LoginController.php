@@ -37,4 +37,9 @@ class LoginController extends Controller
 
         return redirect(config("app.REACT_APP_URL") ."/token_storage" . $token->plainTextToken . "?b=" . $token->plainTextToken);
     }
+
+    public function authCheck()
+    {
+        return response()->json(['user' => Auth::user()]);
+    }
 }

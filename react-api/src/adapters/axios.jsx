@@ -4,7 +4,7 @@ export default function setConfig() {
     const token = localStorage.getItem('token');
     const config = {
         headers: { Authorization: token },
-        validateStatus: function (status){return errorHandler(status)}
+        // validateStatus: function (status){return errorHandler(status)}
     };
 
     return (

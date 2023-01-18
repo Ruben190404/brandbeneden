@@ -21,6 +21,8 @@ use Laravel\Socialite\Facades\Socialite;
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
+    Route::get('/auth',[\App\Http\Controllers\Auth\LoginController::class, 'authCheck']);
+
   //Tasks Routes
   Route::get('/sprint/{id}', [\App\Http\Controllers\TaskController::class, 'index']);
   Route::post('/add-task', [\App\Http\Controllers\TaskController::class, 'store']);
