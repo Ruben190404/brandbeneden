@@ -7,7 +7,7 @@ import List from "../components/Sprint/list";
 function Home() {
     
     let { id } = useParams();
-    
+    console.log("home render");
     return (
         <div>
             <Header />

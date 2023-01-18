@@ -2,8 +2,6 @@ import Card from "./card";
 import AddCardButton from "./AddCardButton";
 import {React, useState} from "react";
 import axios from "axios";
-import ProjectEditForm from "./Project/edit";
-import ProjectAddForm from "./Project/create";
 import ShowSprints from "./Sprint/show";
 import {Routes, Route, useParams} from "react-router-dom";
 import SprintForm from "./Sprint/create";
@@ -56,6 +54,7 @@ function Board() {
             setEnd(end_date_data);
         })
     }
+    console.log("board render");
 
     return (
         <div className={"board"}>
@@ -98,7 +97,6 @@ function Board() {
                     <Card path={id}/>
                 </div>
             </div>
-            <div id="project-add-form" style={{display: "none"}}><ProjectAddForm/></div>
             <div id="sprint-add-form" style={{display: "none"}}><SprintForm/></div>
         </div>
     )

@@ -41,7 +41,7 @@ function App() {
     //
     //     return children
     // };
-
+    console.log("app.js");
     return (
         <BrowserRouter>
             <Routes>
