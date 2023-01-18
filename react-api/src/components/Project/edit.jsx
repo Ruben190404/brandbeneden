@@ -1,7 +1,10 @@
 import '../../styles/main.css';
 import {useState} from "react";
 import axios from "axios";
-import setConfig from "../../adapters/axios"
+import {
+    default as setConfig,
+    apiUrl,
+} from "../../adapters/axios";
 
 const config = setConfig();
 
@@ -11,7 +14,7 @@ function Update() {
     const end_date = document.getElementById('project_update_end_date').value;
     const id = document.getElementById('id').value;
 
-    axios.put(`http://localhost:8000/api/projects/update/${id}`, {
+    axios.put(apiUrl+`/api/projects/update/${id}`, {
         title: title,
         start_date: start_date,
         end_date: end_date,
@@ -25,7 +28,7 @@ function Update() {
 function SoftDelete() {
     const id = document.getElementById('id').value;
 
-    axios.put(`http://localhost:8000/api/projects/delete/${id}`, {
+    axios.put(apiUrl+`/api/projects/delete/${id}`,{
         soft_delete: new Date().toISOString().slice(0, 19).replace('T', ' ').replace('Z', '')
     }, config).then((response) => {
         window.location.reload();
@@ -45,7 +48,7 @@ function ProjectEditForm(props) {
     const id = props.id;
 
     if (id !== '') {
-        axios.get(`http://localhost:8000/api/projects/${id}`, config).then((response) => {
+        axios.get(apiUrl+`/api/projects/${id}`, config).then((response) => {
             console.log(response.data);
             let start_date_data = new Date(response.data.project.start_date).toISOString().slice(0, 10);
             let end_date_data = new Date(response.data.project.end_date).toISOString().slice(0, 10);
@@ -57,6 +60,7 @@ function ProjectEditForm(props) {
         })
     }
     console.log("pedit render");
+
     return (
         <div className="flex justify-center items-center h-screen w-full fixed">
             <form className="form justify-around primary-background-colour">

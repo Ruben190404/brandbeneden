@@ -3,7 +3,10 @@ import axios from "axios";
 import React, {useState, useEffect, createRef} from "react";
 import {Multiselect} from "multiselect-react-dropdown";
 import {useParams} from "react-router-dom";
-import setConfig from "../../adapters/axios"
+import {
+    default as setConfig,
+    apiUrl,
+} from "../../adapters/axios";
 
 const config = setConfig();
 
@@ -26,7 +29,7 @@ export default class Create extends React.Component {
         const users = this.state.selectedUsers;
         const start_date = document.getElementById('project_start_date').value;
         const end_date = document.getElementById('project_end_date').value;
-        axios.post("http://localhost:8000/api/projects/store", {
+        axios.post(apiUrl+"/api/projects/store", {
             title: title,
             start_date: start_date,
             end_date: end_date,
@@ -62,7 +65,7 @@ export default class Create extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:8000/api/users`, config).then(res => {
+        axios.get(apiUrl+`/api/users`, config).then(res => {
             const users = res.data;
             // this.setState([users]);
             this.state.users = users;

@@ -6,6 +6,10 @@ import ProjectEditForm from "./Project/edit";
 import axios from "axios";
 import setConfig from "../adapters/axios"
 import ProjectAddForm from "./Project/create";
+import {
+    default as setConfig,
+    apiUrl,
+} from "../adapters/axios";
 
 const config = setConfig();
 
@@ -31,7 +35,7 @@ export default class Header extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:8000/api/projects`, config)
+        axios.get(apiUrl+`/api/projects`, config)
             .then(res => {
                 const projects = res.data;
                 this.setState({projects});

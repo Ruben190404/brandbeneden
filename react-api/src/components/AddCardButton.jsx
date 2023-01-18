@@ -1,6 +1,9 @@
 import React from "react";
 import axios from "axios";
-import setConfig from "../adapters/axios"
+import {
+    default as setConfig,
+    apiUrl,
+} from "../adapters/axios";
 
 const config = setConfig();
 
@@ -20,7 +23,7 @@ export default class TaskAdd extends React.Component {
     saveTask = async (e) => {
         e.preventDefault();
 
-        const response = await axios.post('http://127.0.0.1:8000/api/add-task', this.state, config)
+        const response = await axios.post(apiUrl+'/api/add-task', this.state, config)
     }
     constructor(props) {
         super(props);
@@ -39,7 +42,7 @@ export default class TaskAdd extends React.Component {
     }
 
     async setCurrentSprint() {
-        await axios.get(`http://localhost:8000/api/currentsprint`, config).then((res) => {
+        await axios.get(apiUrl+`/api/currentsprint`, config).then((res) => {
             const currentSprintId = res.data.currentsprint;
             if (res.data.status === true && window.location.pathname === "/") {
                 this.state.sprint_id = currentSprintId;
@@ -54,7 +57,7 @@ export default class TaskAdd extends React.Component {
     saveTask = async (e) => {
         e.preventDefault();
         await this.setCurrentSprint().then( async () => {
-            const response = await axios.post('http://127.0.0.1:8000/api/add-task', this.state, config)
+            const response = await axios.post(apiUrl+'/api/add-task', this.state, config)
             if (response.data.status === true) {
                 window.location.reload();
             }
