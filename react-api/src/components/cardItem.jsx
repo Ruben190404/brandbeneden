@@ -1,7 +1,10 @@
 import axios from "axios";
 import React from "react";
 import {useParams} from "react-router-dom";
-import setConfig from "../adapters/axios"
+import {
+    default as setConfig,
+    apiUrl,
+} from "../adapters/axios";
 import SimpleTrashCan from "../Images/SimpleTrashCan.png";
 
 
@@ -21,7 +24,7 @@ export default class CardItem extends React.Component {
 
         result[e.target.name] = e.target.value;
         clearTimeout(this.timeout[id]);
-        this.timeout[id] = setTimeout(() => axios.put(`http://127.0.0.1:8000/api/update-task/${result.id}`,result , config), 1000)
+        this.timeout[id] = setTimeout(() => axios.put(apiUrl+`/api/update-task/${result.id}`,result , config), 1000)
 
         if (e.target.name === "sprint_id") {
             setTimeout(window.location.reload.bind(window.location), 50);
@@ -33,7 +36,7 @@ export default class CardItem extends React.Component {
         var result = this.props.state.tasks.find(item => item.id === id);
 
         if (window.confirm("You Sure") === true) {
-            axios.put(`http://127.0.0.1:8000/api/delete-task/${result.id}`, {soft_delete: new Date().toISOString().slice(0, 19).replace('T', ' ').replace('Z', '')}, config);
+            axios.put(apiUrl+`/api/delete-task/${result.id}`, {soft_delete: new Date().toISOString().slice(0, 19).replace('T', ' ').replace('Z', '')}, config);
             document.getElementById(id).remove();
             alert("It is Deleted");
             setTimeout(window.location.reload.bind(window.location), 100);
@@ -67,7 +70,7 @@ export default class CardItem extends React.Component {
         console.log(result.id);
         // timer stuff
         clearTimeout(this.timeout[id]);
-        this.timeout[id] = setTimeout(() => axios.put(`http://127.0.0.1:8000/api/update-task/${result.id}`, result, config).then(() => window.location.reload()),  200)
+        this.timeout[id] = setTimeout(() => axios.put(apiUrl+`/api/update-task/${result.id}`, result, config).then(() => window.location.reload()),  200)
 
     }
 

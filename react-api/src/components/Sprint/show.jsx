@@ -1,6 +1,9 @@
 import React from "react";
 import axios from "axios";
-import setConfig from "../../adapters/axios"
+import {
+    default as setConfig,
+    apiUrl,
+} from "../../adapters/axios";
 
 
 const config = setConfig();
@@ -16,7 +19,7 @@ export default class ShowSprints extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:8000/api/sprints`, config)
+        axios.get(apiUrl+`/api/sprints`, config)
             .then(res => {
                 const sprints = res.data;
                 this.setState({sprints});
