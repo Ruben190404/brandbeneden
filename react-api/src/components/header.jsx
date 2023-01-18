@@ -4,7 +4,6 @@ import pfp from "../Images/testpfp.png";
 import '../styles/main.css';
 import ProjectEditForm from "./Project/edit";
 import axios from "axios";
-import setConfig from "../adapters/axios"
 import ProjectAddForm from "./Project/create";
 import {
     default as setConfig,
