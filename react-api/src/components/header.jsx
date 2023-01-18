@@ -5,6 +5,7 @@ import '../styles/main.css';
 import ProjectEditForm from "./Project/edit";
 import axios from "axios";
 import setConfig from "../adapters/axios"
+import ProjectAddForm from "./Project/create";
 
 const config = setConfig();
 
@@ -15,7 +16,7 @@ export default class Header extends React.Component {
 
         this.state = {
             projects: [],
-            projectId: 1
+            projectId: ''
         }
     }
 
@@ -38,6 +39,7 @@ export default class Header extends React.Component {
     }
 
     render() {
+        console.log("header render");
         return (
             <div>
                 <header className="flex justify-between primary-background-colour h-20 drop-shadow w-full">
@@ -65,6 +67,7 @@ export default class Header extends React.Component {
                             </div>
                         </div>
                         <div id="project-edit-form" style={{display: "none"}}><ProjectEditForm id={this.state.projectId}/></div>
+                        <div id="project-add-form" style={{display: "none"}}><ProjectAddForm/></div>
                         <a href="/Burndown" className="purple-button">Burn-down</a>
                     </div>
 

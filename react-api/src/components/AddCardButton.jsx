@@ -62,6 +62,7 @@ export default class TaskAdd extends React.Component {
     }
 
     render() {
+        console.log("cutton");
         return (
             <form className={"add-card"} onSubmit={this.saveTask}>
                 <button type="submit">

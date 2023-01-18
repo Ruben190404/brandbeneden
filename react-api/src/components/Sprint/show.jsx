@@ -25,6 +25,7 @@ export default class ShowSprints extends React.Component {
 
 
     render() {
+        console.log("spow");
         return (
                 <div className={"sprint-nav-sprints"}>
                     {
@@ -33,7 +34,7 @@ export default class ShowSprints extends React.Component {
                                 <button className={'sprint-nav-sprints-item'} key={sprint.id} defaultValue={sprint.id}>
                                     <a href={`/${sprint.id}`}>{sprint.title}</a>
                                 </button>
-                            ) : ""
+                            ) : null
                     }
                 </div>
         )

@@ -35,6 +35,6 @@ class LoginController extends Controller
             Auth::login($newUser, true);
         }
 
-        return redirect("http://localhost:3000/token_storage" . $token->plainTextToken . "?b=" . $token->plainTextToken);
+        return redirect(config("app.REACT_APP_URL") ."/token_storage" . $token->plainTextToken . "?b=" . $token->plainTextToken);
     }
 }

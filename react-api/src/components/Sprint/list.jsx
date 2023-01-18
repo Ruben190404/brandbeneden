@@ -44,6 +44,7 @@ class List extends Component {
     }
 
     render() {
+        console.log("sist");
         var sprintListDisplay = "";
 
         if (this.state.loading) {

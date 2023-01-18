@@ -75,7 +75,7 @@ export default class CardItem extends React.Component {
         const card = this.props.card
         const childCard = this.props.childCard
         const isChild = this.props.isChild
-
+        console.log("citem render");
         return (
                         <div>
                             <div key={card.id} id={card.id} className="card"

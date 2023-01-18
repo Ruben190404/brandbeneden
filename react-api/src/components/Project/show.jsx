@@ -29,6 +29,7 @@ export default class Projects extends React.Component {
     }
 
     render() {
+        console.log("phow");
         return (
             <ul>
                 {

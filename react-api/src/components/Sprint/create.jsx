@@ -29,7 +29,7 @@ class SprintForm extends Component {
 
         const response = await axios.post('http://127.0.0.1:8000/api/add-sprint', this.state, config)
             .then((response) => {
-                window.location.reload();
+                // window.location.reload();
             })
     }
 
@@ -38,6 +38,7 @@ class SprintForm extends Component {
     }
 
     render() {
+        console.log("sreate");
         return (
             <form onSubmit={this.saveSprint} className="form justify-around primary-background-colour w-fit">
                 <div className="w-full flex justify-evenly items-center flex-row">

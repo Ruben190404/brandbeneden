@@ -60,15 +60,12 @@ class ProjectController extends Controller
 
     public function update(Project $project, Request $request) // updates a project in the database
     {
-
         $project->title = $request->input('title');
         $project->start_date = $request->input('start_date');
         $project->end_date = $request->input('end_date');
 
         $project->save();
     }
-
-
 
     public function delete(Project $project, Request $request)
     {
