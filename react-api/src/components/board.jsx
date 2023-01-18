@@ -74,8 +74,8 @@ function Board() {
                     </div>
                 </div>
             </div>
-            <div className={"sprint-board"}>
-                <div className={"card-nav"}>
+            <div className={"sprint-board"} >
+                <div className={"card-nav mb-2"}>
                     <ul>
                         <li className={"sprint-name"}>
                             <span>Sprint name</span>

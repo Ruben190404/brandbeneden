@@ -92,7 +92,7 @@ class SprintEditForm extends Component {
                     <form onSubmit={this.updateSprint} className="form justify-around primary-background-colour w-fit">
                         <div className="w-full flex justify-evenly items-center flex-row">
                             <button className="border border-gray-700 w-6 h-6" onClick={() => this.SoftDelete()}>
-                                <img src={SimpleTrashCan}/>
+                                <img src={SimpleTrashCan} alt={"Delete"}/>
                             </button>
                             <h2>Edit Sprint</h2>
                             <div className="w-6 h-6"></div>
