@@ -80,7 +80,7 @@ export default class CardItem extends React.Component {
         const card = this.props.card
         const childCard = this.props.childCard
         const isChild = this.props.isChild
-
+        console.log("citem render");
         return (
                         <div className="w-full flex flex-col justify-center">
                             <div key={card.id} id={card.id} className="card w-full bg-white"

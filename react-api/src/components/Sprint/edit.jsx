@@ -84,7 +84,7 @@ class SprintEditForm extends Component {
     }
 
     render() {
-
+console.log("sedit");
         return (
             <div>
                 <Header />

@@ -74,6 +74,7 @@ export default class Create extends React.Component {
     }
 
     render() {
+        console.log("preate");
         return (
             <div className="flex justify-center items-center h-screen w-full fixed">
                 <form className="form justify-around primary-background-colour">

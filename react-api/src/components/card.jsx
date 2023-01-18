@@ -68,6 +68,7 @@ export default class Card extends React.Component {
 
 
     render() {
+        console.log("card render")
         return (
             <div>
                 {this.state.tasks ? this.state.tasks.map(card => {

@@ -58,6 +58,8 @@ return [
 
     'asset_url' => env('ASSET_URL'),
 
+    'REACT_APP_URL' => env('REACT_APP_URL'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
